@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      target: dev
+    volumes:
+      - ./php:/var/app:cached
+      - ./php/var:/var/app/var:delegated
+    environment:
+      - XDEBUG_TRIGGER=xdebug
+
+  postgresql:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pirate
+    volumes:
+        - ./postgresql/data:/var/lib/postgresql/data:delegated
+    ports:
+      - 5432:5432
