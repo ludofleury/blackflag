@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./nginx
+    links:
+      - php
+    ports:
+      - 80:80
+
+  php:
+    build:
+      context: ./php
+      target: prod
+      dockerfile: Dockerfile

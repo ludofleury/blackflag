@@ -1,0 +1,38 @@
+{
+    "amphp/amp": {
+        "version": "2.x-dev"
+    },
+    "amphp/byte-stream": {
+        "version": "1.x-dev"
+    },
+    "composer/semver": {
+        "version": "3.x-dev"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.4.5"
+    },
+    "dnoegel/php-xdg-base-dir": {
+        "version": "v0.1.1"
+    },
+    "felixfbecker/advanced-json-rpc": {
+        "version": "v3.1.1"
+    },
+    "felixfbecker/language-server-protocol": {
+        "version": "1.x-dev"
+    },
+    "netresearch/jsonmapper": {
+        "version": "v2.1.0"
+    },
+    "openlss/lib-array2xml": {
+        "version": "1.0.0"
+    },
+    "phpstan/extension-installer": {
+        "version": "dev-master"
+    },
+    "vimeo/psalm": {
+        "version": "4.x-dev"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
+    }
+}
