@@ -40,6 +40,9 @@
     },
     "autoload": {
         "psr-4": {
+            "BlackFlag\\": "src/BlackFlag",
+            "Rpg\\": "src/Rpg",
+            "EventSourcing\\": "src/EventSourcing",
             "App\\": "src/App"
         }
     },

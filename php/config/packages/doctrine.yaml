@@ -10,4 +10,9 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: false
         mappings:
+            EventSourcing\Message:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/event-sourcing'
+                prefix: 'EventSourcing'
 
