@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      target: dev
+      args:
+        XDEBUG_CLIENT_HOST: docker.for.mac.localhost
+    volumes:
+      - ./php:/var/app:cached
+      - ./php/var:/var/app/var:delegated
+    environment:
+      - XDEBUG_MODE=develop,debug,coverage
+      - XDEBUG_SESSION=1
+
+  postgresql:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pirate
+    volumes:
+        - ./postgresql/data:/var/lib/postgresql/data:delegated
+    ports:
+      - 5432:5432
