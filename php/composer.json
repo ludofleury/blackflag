@@ -40,6 +40,7 @@
     },
     "autoload": {
         "psr-4": {
+            "EventSourcing\\": "src/EventSourcing",
             "App\\": "src/App"
         }
     },
