@@ -1,0 +1,3 @@
+controllers:
+  resource: ../../../tests/Controller/
+  type: annotation
