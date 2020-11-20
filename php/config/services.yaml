@@ -25,4 +25,8 @@ services:
     #    tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones  
+    # please note that last definitions always *replace* previous ones
+
+    # EventSourcing interface mapping
+    EventSourcing\EventStore: '@App\EventSourcing\EventStore'
+    EventSourcing\EventBus: '@App\EventSourcing\EventBus'

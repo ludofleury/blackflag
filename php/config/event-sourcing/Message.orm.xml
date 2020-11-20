@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity  name="EventSourcing\Message" table="events" repository-class="App\EventSourcing\EventStore">
+    <indexes>
+      <index name="ar_idx" columns="aggregate_root_id,aggregate_root_type,sequence"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="ar_seq_uniq" columns="aggregate_root_id,sequence"/>
+    </unique-constraints>
+    <id name="id" type="uuid" column="id">
+      <generator strategy="NONE"/>
+    </id>
+    <field name="aggregateRootType" type="string" column="aggregate_root_type" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="aggregateRootId" type="uuid" column="aggregate_root_id" nullable="false"/>
+    <field name="sequence" type="integer" column="sequence" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="recordedAt" type="date_immutable" column="recorded_at" nullable="false"/>
+    <field name="eventType" type="string" column="event_type" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="data" type="json" column="data" nullable="false">
+      <options>
+        <option name="jsonb">1</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>
