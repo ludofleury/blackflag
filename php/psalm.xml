@@ -13,4 +13,22 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <!-- specific vendor false positive due to psalm limitation -->
+        <InvalidDocblock>
+            <errorLevel type="suppress">
+                <file name="vendor/doctrine/orm/lib/Doctrine/ORM/EntityRepository.php" />
+            </errorLevel>
+        </InvalidDocblock>
+
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <!-- false positive due to psalm limitation & the implementation of phpunit test case -->
+                <file name="src/EventSourcing/Testing/EsTestCase.php" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+    </issueHandlers>
+    <plugins>
+        <plugin filename="src/EventSourcing/Psalm/EventSourcedPlugin.php" />
+    </plugins>
 </psalm>
