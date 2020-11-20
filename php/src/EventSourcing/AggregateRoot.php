@@ -25,18 +25,19 @@ abstract class AggregateRoot extends Entity
 
     public static function load(UuidInterface $id, Stream $stream): static
     {
+
         $aggregateRoot = new static($id);
 
         foreach ($stream as $message) {
             ++$aggregateRoot->sequence;
 
-            if ($message->getAggregateRootType() !== static::class || $message->getAggregateRootId() !== $aggregateRoot->id) {
+            if ($message->getAggregateRootType() !== static::class || !$message->getAggregateRootId()->equals($aggregateRoot->id)) {
                 throw new MessageMismatchException(
                     sprintf(
                         'Message (AR: "%s" AR_ID: "%s" , id: "%s", seq: "%d" event: "%s") is not addressed to this AR ("%s": "%s")',
                         $message->getAggregateRootType(),
                         $message->getAggregateRootId(),
-                        $message->getId(),
+                        $message->getId()->toString(),
                         $message->getSequence(),
                         $message->getEvent()::class,
                         $aggregateRoot::class,
@@ -44,6 +45,7 @@ abstract class AggregateRoot extends Entity
                     )
                 );
             }
+
 
             if ($message->getSequence() !== $aggregateRoot->sequence) {
                 throw new ChronologicalException(
