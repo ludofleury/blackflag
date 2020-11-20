@@ -43,6 +43,7 @@
     "autoload": {
         "psr-4": {
             "EventSourcing\\": "src/EventSourcing",
+            "Rpg\\": "src/Rpg",
             "App\\": "src/App"
         }
     },
