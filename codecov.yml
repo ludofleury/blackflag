@@ -1,0 +1,2 @@
+fixes:
+  - "::php/"         # move root   e.g., "path/" => "after/path/"
