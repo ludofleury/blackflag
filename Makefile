@@ -32,5 +32,6 @@ restart: ## restart local environement
 test: ## launch test suite & write report in php/reports/test
 	docker-compose exec php vendor/bin/phpunit --testdox
 
-analysis: ## launch static analysis & write report in php/reports/qa
+better: ## launch static analysis & write report in php/reports/qa
 	docker-compose exec php vendor/bin/phpstan analyse
+	docker-compose exec php vendor/bin/psalm
