@@ -40,7 +40,6 @@ final class Attribute extends AbstractStatistic implements Statistic
     }
 
     /**
-     * @return array<string, array<int>>
      */
     static public function getSupportedAttributes(): array
     {

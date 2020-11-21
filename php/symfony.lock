@@ -20,6 +20,9 @@
     "felixfbecker/language-server-protocol": {
         "version": "1.x-dev"
     },
+    "mheap/phpunit-github-actions-printer": {
+        "version": "dev-master"
+    },
     "netresearch/jsonmapper": {
         "version": "v2.1.0"
     },

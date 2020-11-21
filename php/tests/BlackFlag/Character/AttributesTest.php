@@ -77,7 +77,7 @@ final class AttributesTest extends EsTestCase
                 'knowledge'    => 5,
                 'perception'   => 5,
                 'power'        => 5,
-                'strength'     => 5,
+                'strength'     => 9,
             ]
         );
     }

@@ -23,6 +23,7 @@
         "symfony/yaml": "^5.2"
     },
     "require-dev": {
+        "mheap/phpunit-github-actions-printer": "9999999-dev",
         "phpstan/extension-installer": "9999999-dev",
         "phpstan/phpstan": "^0.12.56",
         "phpunit/phpunit": "^9.3",

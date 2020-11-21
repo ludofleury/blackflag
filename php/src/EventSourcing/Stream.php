@@ -24,6 +24,7 @@ final class Stream extends IteratorIterator implements Countable
     {
         /**
          * @noinspection PhpPossiblePolymorphicInvocationInspection
+         * @phpstan-ignore-next-line
          * @psalm-suppress UndefinedInterfaceMethod
          */
         return $this->getInnerIterator()->count();
