@@ -48,7 +48,7 @@ jobs:
         run: docker pull ludofleury/blackflag-php:test
 
       - name: execute tests
-        run: docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.xml.dist --printer mheap\\GithubActionsReporter\\Printer | vendor/bin/github-annotation-mapper php/
+        run: docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.xml.dist --printer mheap\\GithubActionsReporter\\Printer |  docker run -i ludofleury/blackflag-php:test vendor/bin/github-annotation-mapper php/
 
       - name: Archive tests reports
         uses: actions/upload-artifact@v2
@@ -73,4 +73,4 @@ jobs:
         run: docker pull ludofleury/blackflag-php:test
 
       - name: phpstan analyse
-        run:  docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test vendor/bin/phpstan analyse --no-progress --error-format github | vendor/bin/github-annotation-mapper php/
+        run:  docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test vendor/bin/phpstan analyse --no-progress --error-format github |  docker run -i ludofleury/blackflag-php:test vendor/bin/github-annotation-mapper php/
