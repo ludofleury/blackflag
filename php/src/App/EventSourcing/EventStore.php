@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\EventSourcing;
 
@@ -24,8 +25,8 @@ final class EventStore extends ServiceEntityRepository implements EventStoreInte
         $manager = $this->getEntityManager();
 
         try {
-            foreach ($stream as $event) {
-                $manager->persist($event);
+            foreach ($stream as $message) {
+                $manager->persist($message);
             }
 
             $manager->transactional(
@@ -34,7 +35,7 @@ final class EventStore extends ServiceEntityRepository implements EventStoreInte
                 }
             );
         } catch (Throwable $exception) {
-            throw new EventStoreException('Unable to persist event stream', null, $exception);
+            throw new EventStoreException('Unable to persist event stream', 0, $exception);
         }
     }
 
@@ -46,9 +47,9 @@ final class EventStore extends ServiceEntityRepository implements EventStoreInte
                 ->orderBy('e.sequence', 'ASC')
                 ->setParameters(['id' => $aggregateRootId, 'type' => $aggregateRootType])
                 ->getQuery()
-                ->getResult();
+                ->execute();
         } catch (Throwable $exception) {
-            throw new EventStoreException(sprintf('Unable to load event stream for %s "%s"', $aggregateRootType, $aggregateRootId), null, $exception);
+            throw new EventStoreException(sprintf('Unable to load event stream for %s "%s"', $aggregateRootType, $aggregateRootId->toString()), 0, $exception);
         }
 
         return new Stream(...$messages);

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace EventSourcing;
 
@@ -15,12 +16,12 @@ abstract class AggregateRoot extends Entity
 
     protected int $sequence = -1;
 
-    public function __construct(UuidInterface $id)
+    final public function __construct(UuidInterface $id)
     {
         $this->id = $id;
     }
 
-    public static function load(UuidInterface $id, Stream $stream): self
+    public static function load(UuidInterface $id, Stream $stream): static
     {
         $aggregateRoot = new static($id);
 

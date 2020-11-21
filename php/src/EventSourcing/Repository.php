@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace EventSourcing;
 
 use EventSourcing\Exception\AggregateRootNotFoundException;
+use EventSourcing\Exception\InvalidAggregateRootTypeException;
 use Ramsey\Uuid\UuidInterface;
 
 abstract class Repository
@@ -16,6 +18,26 @@ abstract class Repository
         EventStore $eventStore,
         EventBus $eventBus
     ) {
+        if (!class_exists($this->aggregateRootType)) {
+            throw new InvalidAggregateRootTypeException(
+                sprintf(
+                    'Aggregate root type "%s" does not exists, check your FQCN and your autoload configuration',
+                    $this->aggregateRootType
+                )
+            );
+        }
+
+        $parentClasses = class_parents($this->aggregateRootType);
+        if (false === $parentClasses || !in_array(AggregateRoot::class, $parentClasses)) {
+            throw new InvalidAggregateRootTypeException(
+                sprintf(
+                    'Class "%s" does not implement "%s": inheritance is mandatory',
+                    $this->aggregateRootType,
+                    AggregateRoot::class
+                )
+            );
+        }
+
         $this->aggregateRootType = $aggregateRootType;
         $this->eventStore = $eventStore;
         $this->eventBus = $eventBus;
@@ -32,10 +54,13 @@ abstract class Repository
     {
         $stream = $this->eventStore->load($this->aggregateRootType, $aggregateRootId);
 
-        if (empty($stream)) {
-            throw new AggregateRootNotFoundException(sprintf('No persisted event for "%s": "%s"', $this->aggregateRootType, $aggregateRootId));
+        if (count($stream) === 0) {
+            throw new AggregateRootNotFoundException(sprintf('No persisted event for "%s": "%s"', $this->aggregateRootType, $aggregateRootId->toString()));
         }
 
-        return call_user_func_array([$this->aggregateRootType, 'load'], [$aggregateRootId, $stream]);
+        /** @var callable */
+        $aggregateRootLoadMethod = $this->aggregateRootType.'::load';
+
+        return call_user_func_array($aggregateRootLoadMethod, [$aggregateRootId, $stream]);
     }
 }

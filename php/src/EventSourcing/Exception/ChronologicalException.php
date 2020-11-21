@@ -5,7 +5,7 @@ namespace EventSourcing\Exception;
 
 use RuntimeException;
 
-class EventStoreException extends RuntimeException
+class ChronologicalException extends RuntimeException
 {
 
 }

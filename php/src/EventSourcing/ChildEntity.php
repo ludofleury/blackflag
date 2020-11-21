@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace EventSourcing;
 
@@ -14,6 +15,7 @@ abstract class ChildEntity extends Entity
 
     protected function apply(Event $event): void
     {
+        /** @psalm-suppress InaccessibleMethod */
         $this->aggregateRoot->apply($event);
     }
 }

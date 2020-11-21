@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace EventSourcing;
 
@@ -29,7 +30,7 @@ class Message
      */
     protected string $eventType;
     /**
-     * @var array Event normalized as (json) serializable array
+     * @var array<string, mixed> Event normalized as (json) serializable array
      * @see Event::toArray()
      */
     protected array $data;
@@ -39,7 +40,7 @@ class Message
      */
     protected ?Event $event = null;
 
-    public function __construct(string $aggregateRootType, UuidInterface $aggregateRootId, $sequence, Event $event)
+    public function __construct(string $aggregateRootType, UuidInterface $aggregateRootId, int $sequence, Event $event)
     {
         $this->id = Uuid::uuid1();
         $this->aggregateRootType = $aggregateRootType;
@@ -79,7 +80,9 @@ class Message
     public function getEvent(): Event
     {
         if ($this->event === null) {
-            $this->event = call_user_func_array([$this->eventType, 'fromArray'], [$this->data]);
+            /** @var callable */
+            $eventLoadMethod = $this->eventType.'::fromArray';
+            $this->event = call_user_func_array($eventLoadMethod, [$this->data]);
         }
 
         return $this->event;

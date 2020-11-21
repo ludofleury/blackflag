@@ -1,10 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace EventSourcing;
 
 use ArrayIterator;
 use Countable;
 use IteratorIterator;
+
 
 final class Stream extends IteratorIterator implements Countable
 {
@@ -20,6 +22,11 @@ final class Stream extends IteratorIterator implements Countable
 
     public function count() : int
     {
+        /**
+         * @noinspection PhpPossiblePolymorphicInvocationInspection
+         * @phpstan-ignore-next-line
+         * @psalm-suppress UndefinedInterfaceMethod
+         */
         return $this->getInnerIterator()->count();
     }
 }

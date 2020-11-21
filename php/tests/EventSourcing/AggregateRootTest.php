@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tests\EventSourcing;
 
@@ -13,8 +14,7 @@ use Ramsey\Uuid\UuidInterface;
 
 class AggregateRootTest extends EsTestCase
 {
-
-    public function testHasUniqueIdentifier()
+    public function testHasUniqueIdentifier(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
         $ar = new class($id) extends AggregateRoot {};
@@ -25,14 +25,14 @@ class AggregateRootTest extends EsTestCase
         );
     }
 
-    public function testAppliesEvent()
+    public function testAppliesEvent(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
 
         $ar = new class($id) extends AggregateRoot {
             public bool $hasBeenApplied = false;
 
-            public function dummy() {
+            public function dummy(): void {
                 $this->apply(new DummyEvent('test'));
             }
             protected function applyDummyEvent(DummyEvent $event): void
@@ -46,11 +46,12 @@ class AggregateRootTest extends EsTestCase
         $this->assertTrue($ar->hasBeenApplied);
     }
 
-    public function testRecordsEventsInAMessageStream()
+    public function testRecordsEventsInAMessageStream(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
         $ar = new class($id) extends AggregateRoot {
-            public function dummy($id) {
+            public function dummy(string $id): void
+            {
                 $this->apply(new DummyEvent($id));
             }
         };
@@ -75,11 +76,12 @@ class AggregateRootTest extends EsTestCase
         );
     }
 
-    public function testFlushesUncommittedEventsAfterProvidingStream()
+    public function testFlushesUncommittedEventsAfterProvidingStream(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
         $ar = new class($id) extends AggregateRoot {
-            public function dummy($id) {
+            public function dummy(string $id): void
+            {
                 $this->apply(new DummyEvent($id));
             }
         };
@@ -107,11 +109,12 @@ class AggregateRootTest extends EsTestCase
         );
     }
 
-    public function testAssignsZeroBasedSequencesToEventMessages()
+    public function testAssignsZeroBasedSequencesToEventMessages(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
         $ar = new class($id) extends AggregateRoot {
-            public function dummy($id) {
+            public function dummy(string $id): void
+            {
                 $this->apply(new DummyEvent($id));
             }
         };
@@ -130,7 +133,7 @@ class AggregateRootTest extends EsTestCase
         }
     }
 
-    public function testInitializesItselfFromAStream()
+    public function testInitializesItselfFromAStream(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
         $ar = new StubAggregateRoot($id);
@@ -167,32 +170,31 @@ class AggregateRootTest extends EsTestCase
         }
     }
 
-    public function testPropagatesEventsToItsChildEntities()
+    public function testPropagatesEventsToItsChildEntities(): void
     {
         $id = Uuid::fromString('ab0ca3fa-2862-11eb-bdd8-0242ac170003');
-        $ar = new class($id) extends AggregateRoot {
-            public StubChildEntity $child;
-            public function __construct(UuidInterface $id)
+        $ar = new class($id) extends AggregateRoot
+        {
+            public function dummy(string $id): void
             {
-                parent::__construct($id);
-                $this->child = new StubChildEntity($this);
-            }
-
-            public function dummy($id) {
                 $this->apply(new DummyEvent($id));
-            }
-
-            public function getChildDummyEventCalls(): int
-            {
-                return $this->child->getDummyEventCalls();
             }
         };
 
-        $this->assertEquals(0, $ar->getChildDummyEventCalls());
+        $child = new class($ar) extends ChildEntity
+        {
+            public string $witness = '';
+            protected function applyDummyEvent(DummyEvent $event): void
+            {
+                $this->witness .= $event->getId();
+            }
+        };
+
+        $this->assertEquals('', $child->witness);
         $ar->dummy('test1');
-        $this->assertEquals(1, $ar->getChildDummyEventCalls());
+        $this->assertEquals('test1', $child->witness);
         $ar->dummy('test2');
-        $this->assertEquals(2, $ar->getChildDummyEventCalls());
+        $this->assertEquals('test1test2', $child->witness);
     }
 }
 
@@ -225,7 +227,8 @@ class StubAggregateRoot extends AggregateRoot
 {
     private string $witness = '';
 
-    public function dummy($id) {
+    public function dummy(string $id): void
+    {
         $this->apply(new DummyEvent($id));
     }
 
