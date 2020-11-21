@@ -43,7 +43,9 @@ RUN composer install --prefer-dist --no-scripts --optimize-autoloader && rm -rf 
 
 # PHP app bootstrap
 COPY . /var/app
-RUN php bin/console cache:clear 
+RUN php bin/console cache:clear
+
+RUN echo "memory_limit = 128M" >> /usr/local/etc/php/php.ini;
 
 ##############################################################################################################
 FROM base AS prod
