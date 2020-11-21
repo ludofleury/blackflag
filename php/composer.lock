@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f649b40601b91af622c27543283d5bcc",
+    "content-hash": "f457030dad9d56940f870fe9ec68cb9c",
     "packages": [
         {
             "name": "brick/math",
@@ -4863,6 +4863,48 @@
             "time": "2020-10-23T13:55:30+00:00"
         },
         {
+            "name": "ludofleury/github-annotation-path-mapper",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ludofleury/github-annotation-path-mapper.git",
+                "reference": "df65a98be8b415b0cb0e85ad2061dfd26d8afa1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ludofleury/github-annotation-path-mapper/zipball/df65a98be8b415b0cb0e85ad2061dfd26d8afa1f",
+                "reference": "df65a98be8b415b0cb0e85ad2061dfd26d8afa1f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "default-branch": true,
+            "bin": [
+                "bin/github-annotation-mapper"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ludovic FLEURY",
+                    "email": "ludo.fleury@gmail.com"
+                }
+            ],
+            "description": "Prefix github annotation file location from github action workflow command",
+            "support": {
+                "issues": "https://github.com/ludofleury/github-annotation-path-mapper/issues",
+                "source": "https://github.com/ludofleury/github-annotation-path-mapper/tree/v1.0.0"
+            },
+            "time": "2020-11-21T09:43:37+00:00"
+        },
+        {
             "name": "mheap/phpunit-github-actions-printer",
             "version": "dev-master",
             "source": {
@@ -7748,6 +7790,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "ludofleury/github-annotation-path-mapper": 20,
         "mheap/phpunit-github-actions-printer": 20,
         "phpstan/extension-installer": 20,
         "vimeo/psalm": 20

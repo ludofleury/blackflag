@@ -23,6 +23,7 @@
         "symfony/yaml": "^5.2"
     },
     "require-dev": {
+        "ludofleury/github-annotation-path-mapper": "9999999-dev",
         "mheap/phpunit-github-actions-printer": "9999999-dev",
         "phpstan/extension-installer": "9999999-dev",
         "phpstan/phpstan": "^0.12.56",
@@ -63,7 +64,8 @@
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd"
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

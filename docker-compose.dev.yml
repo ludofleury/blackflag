@@ -8,6 +8,8 @@ services:
       - ./php:/var/app:cached
       - ./php/var:/var/app/var:delegated
     environment:
+      - XDEBUG_MODE=debug,coverage
+      - XDEBUG.CLIENT_HOST=docker.for.mac.localhost
       - XDEBUG_TRIGGER=xdebug
 
   postgresql:
