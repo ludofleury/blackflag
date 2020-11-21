@@ -41,6 +41,9 @@ abstract class Entity
         return 'apply'.end($classParts);
     }
 
+    /**
+     * @return ChildEntity[]
+     */
     protected function getChildEntities(): array
     {
         return $this->childEntities;

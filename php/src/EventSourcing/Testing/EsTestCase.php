@@ -3,13 +3,17 @@
 namespace EventSourcing\Testing;
 
 use EventSourcing\AggregateRoot;
+use EventSourcing\Event;
 use EventSourcing\Message;
 use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\TestCase;
 
 class EsTestCase extends TestCase
 {
-    public static function assertHistory(AggregateRoot $aggregateRoot, $expected, string $message = ''): void
+    /**
+     * @param array<Event> $expected
+     */
+    public static function assertUncommittedEvents(array $expected, AggregateRoot $aggregateRoot, string $message = ''): void
     {
         $events = array_map(
             function (Message $message) {

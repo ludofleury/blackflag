@@ -6,6 +6,7 @@ use ArrayIterator;
 use Countable;
 use IteratorIterator;
 
+
 final class Stream extends IteratorIterator implements Countable
 {
     public function __construct(Message ...$messages)
@@ -20,6 +21,10 @@ final class Stream extends IteratorIterator implements Countable
 
     public function count() : int
     {
+        /**
+         * @noinspection PhpPossiblePolymorphicInvocationInspection
+         * @phpstan-ignore-next-line
+         */
         return $this->getInnerIterator()->count();
     }
 }

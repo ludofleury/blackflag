@@ -42,6 +42,7 @@
         "psr-4": {
             "EventSourcing\\": "src/EventSourcing",
             "Rpg\\": "src/Rpg",
+            "BlackFlag\\": "src/BlackFlag",
             "App\\": "src/App"
         }
     },
