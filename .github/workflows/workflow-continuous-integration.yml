@@ -73,4 +73,4 @@ jobs:
         run: docker pull ludofleury/blackflag-php:test
 
       - name: phpstan analyse
-        run:  docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test vendor/bin/phpstan analyse --no-progress --memory-limit=100M  --error-format github
+        run:  docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test vendor/bin/phpstan analyse --no-progress --error-format github

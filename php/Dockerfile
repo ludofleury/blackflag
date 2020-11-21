@@ -45,7 +45,7 @@ RUN composer install --prefer-dist --no-scripts --optimize-autoloader && rm -rf 
 COPY . /var/app
 RUN php bin/console cache:clear
 
-RUN echo "memory_limit = 128M" >> /usr/local/etc/php/php.ini;
+RUN echo "memory_limit = -1" >> /usr/local/etc/php/php.ini;
 
 ##############################################################################################################
 FROM base AS prod
