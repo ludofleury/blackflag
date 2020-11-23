@@ -7,41 +7,29 @@ use Rpg\Exception\InvalidStatisticRequirementsException;
 use Rpg\Exception\OutOfRangeStatisticValueException;
 use Rpg\Exception\UnsupportedStatisticException;
 
-abstract class AbstractStatistic
+abstract class AbstractStatistic implements Statistic
 {
-    protected string $name;
     protected int $value;
     protected ?int $minimum;
     protected ?int $maximum;
 
-    public function __construct(string $name, int $value, ?int $minimum = null, ?int $maximum = null)
+    public function __construct(int $value, ?int $minimum = null, ?int $maximum = null)
     {
         if ($maximum !== null && $minimum !== null && $minimum > $maximum) {
-            throw new InvalidStatisticRequirementsException(static::class, $name, $minimum, $maximum);
+            throw new InvalidStatisticRequirementsException($minimum, $maximum);
         }
 
         if ($minimum !== null && $value < $minimum) {
-            throw new OutOfRangeStatisticValueException(static::class, $name, $minimum, $value);
+            throw new OutOfRangeStatisticValueException($minimum, $value);
         }
 
         if ($maximum !== null && $value > $maximum) {
-            throw new OutOfRangeStatisticValueException(static::class, $name, $maximum, $value);
+            throw new OutOfRangeStatisticValueException($maximum, $value);
         }
 
-        $this->name = $name;
         $this->value = $value;
         $this->minimum = $minimum;
         $this->maximum = $maximum;
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('%s: %d', $this->name, $this->value);
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     public function getValue(): int

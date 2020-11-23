@@ -40,7 +40,7 @@ abstract class AggregateRoot extends Entity
                         $message->getSequence(),
                         $message->getEvent()::class,
                         $aggregateRoot::class,
-                        $aggregateRoot->getId()
+                        $aggregateRoot->getId()->toString()
                     )
                 );
             }

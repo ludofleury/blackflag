@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BlackFlag\Character;
+namespace BlackFlag\PlayableCharacter;
 
 use Ramsey\Uuid\UuidInterface;
 

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace BlackFlag\Character;
+namespace BlackFlag\PlayableCharacter;
 
-use BlackFlag\Character\Event\CharacterCreated;
+use BlackFlag\PlayableCharacter\Event\CharacterCreated;
 use EventSourcing\AggregateRoot;
 use Ramsey\Uuid\Uuid;
 
@@ -19,7 +19,7 @@ final class Character extends AggregateRoot
 
     private bool $gender;
 
-    private Attributes $attributes;
+    private PrimaryAttributes $attributes;
 
     /**
      * @param array<string, int>  $attributes
@@ -54,6 +54,6 @@ final class Character extends AggregateRoot
         $this->nickname = $event->getNickname();
         $this->age = $event->getAge();
         $this->gender = $event->getGender();
-        $this->attributes = new Attributes($this);
+        $this->attributes = new PrimaryAttributes($this);
     }
 }

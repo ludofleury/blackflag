@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BlackFlag\Character\Event;
+namespace BlackFlag\PlayableCharacter\Event;
 
 use EventSourcing\Event;
 

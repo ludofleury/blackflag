@@ -37,7 +37,7 @@ abstract class Entity implements EventSourced
 
     protected function getApplyMethod(Event $event): string
     {
-        $classParts = explode('\\', get_class($event));
+        $classParts = explode('\\', $event::class);
 
         return 'apply'.end($classParts);
     }

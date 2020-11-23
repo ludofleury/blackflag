@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace BlackFlag\Character\Exception;
+namespace BlackFlag\PlayableCharacter\Exception;
 
 use DomainException;
 
-class UnknownAttributeException extends DomainException
+class UnknownAttributesException extends DomainException
 {
     public function __construct(string $name)
     {

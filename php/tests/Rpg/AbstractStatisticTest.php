@@ -10,71 +10,56 @@ use Rpg\Exception\OutOfRangeStatisticValueException;
 
 class AbstractStatisticTest extends TestCase
 {
-    public function testHasName(): void
-    {
-        $stat = new Stat('Test', 5, 1, 10);
-        $this->assertEquals('Test', $stat->getName());
-        $this->assertEquals(5, $stat->getValue());
-    }
-
     public function testHasNumericValue(): void
     {
-        $stat = new Stat('Test', 5, 1, 10);
+        $stat = new Stat(5, 1, 10);
         $this->assertEquals(5, $stat->getValue());
-    }
-
-    public function testSerializesToString(): void
-    {
-        $stat = new Stat('Test', 5, 1, 10);
-        $this->assertEquals('Test: 5', $stat->__ToString());
     }
 
     public function testRequiresMinimumLowerThanMaximum(): void
     {
         $this->expectException(InvalidStatisticRequirementsException::class);
         $this->expectExceptionMessage(
-            sprintf('%s %s requirements are invalid: minimum (%d) cannot be greater than maximum (%d)',
-                Stat::class,
-                'Test',
+            sprintf('minimum %d cannot be greater than maximum %d',
                 10,
                 5
             )
         );
 
-        new Stat('Test', 7, 10, 5);
+        new Stat(7, 10, 5);
     }
 
     public function testEnforcesMinimumRequirements(): void
     {
         $this->expectException(OutOfRangeStatisticValueException::class);
         $this->expectExceptionMessage(
-            sprintf('%s "%s" (%d) is under the minimum requirement of %d',
-                Stat::class,
-                'Test',
+            sprintf('%d is under the minimum requirement of %d',
                 3,
                 5
             )
         );
 
-        new Stat('Test', 3, 5, 6);
+        new Stat(3, 5, 6);
     }
 
     public function testEnforcesMaximumRequirements(): void
     {
         $this->expectException(OutOfRangeStatisticValueException::class);
         $this->expectExceptionMessage(
-            sprintf('%s "%s" (%d) exceed the maximum requirement of %d',
-                Stat::class,
-                'Test',
+            sprintf('%d exceed the maximum requirement of %d',
                 10,
                 6
             )
         );
 
-        new Stat('Test', 10, 5, 6);
+        new Stat(10, 5, 6);
     }
 }
 
 class Stat extends AbstractStatistic
 {
+    public function getName(): string
+    {
+        return 'test';
+    }
 }

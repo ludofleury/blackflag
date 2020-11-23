@@ -173,7 +173,7 @@ class RepositoryTest extends EsTestCase
         $eb = $this->createMock(EventBus::class);
 
         $repository = new class($arClass, $es, $eb) extends Repository {};
-        $loadedAr = $repository->load($arId);
+        $repository->load($arId);
     }
 }
 
