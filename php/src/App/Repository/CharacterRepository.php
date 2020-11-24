@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use BlackFlag\Character\Character;
-use BlackFlag\Character\Exception\CharacterNotFoundException;
-use BlackFlag\Character\Repository;
+use BlackFlag\PlayableCharacter\Character;
+use BlackFlag\PlayableCharacter\Exception\CharacterNotFoundException;
+use BlackFlag\PlayableCharacter\Repository;
 use EventSourcing\EventBus;
 use EventSourcing\EventStore;
 use EventSourcing\Exception\AggregateRootNotFoundException;
