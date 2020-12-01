@@ -1,0 +1,17 @@
+{
+    "source": {
+        "directories": [
+            "src\/BlackFlag",
+            "src\/Rpg",
+            "src\/EventSourcing"
+        ]
+    },
+    "logs": {
+        "badge": {
+            "branch": "main"
+        }
+    },
+    "mutators": {
+        "@default": true
+    }
+}
