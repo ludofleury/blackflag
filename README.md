@@ -26,17 +26,10 @@ Showcasing usage of:
   cp docker-compose.dev.yml docker-compose.override.yml
 ```
 
-2. build docker images, install deps & initialize the stack
+2. build docker images, install deps & initialize the stack `make local`
 
-```bash
-  make local
-```
+3. run the stack `make up`
 
-3. run the stack
-
-```bash
-  make up
-```
 
 ## Development
 ### Dependency management with composer
