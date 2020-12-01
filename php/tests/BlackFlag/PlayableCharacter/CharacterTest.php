@@ -14,6 +14,8 @@ use BlackFlag\Attribute\Primary\Power;
 use BlackFlag\Attribute\Primary\Strength;
 use BlackFlag\PlayableCharacter\Character;
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
+use BlackFlag\Skill\Combat;
+use BlackFlag\Skill\Technical;
 use EventSourcing\Testing\EsTestCase;
 
 final class CharacterTest extends EsTestCase
@@ -36,6 +38,11 @@ final class CharacterTest extends EsTestCase
                 Perception::name   => 5,
                 Power::name        => 5,
                 Strength::name     => 6,
+            ],
+            [
+                ['name' => Combat::DODGING, 'level' => 1],
+                ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
             ]
         );
 
@@ -57,6 +64,11 @@ final class CharacterTest extends EsTestCase
                         Perception::name   => 5,
                         Power::name        => 5,
                         Strength::name     => 6,
+                    ],
+                    [
+                        ['name' => Combat::DODGING, 'level' => 1],
+                        ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                        ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
                     ]
                 ),
             ],

@@ -5,7 +5,7 @@ namespace BlackFlag\Skill;
 
 interface Combat
 {
-    public const MELEE = 'Melee weapon';
+    public const MELEE = 'melee weapon';
     public const MELEE_BATON = 'baton';
     public const MELEE_SCIMITAR = 'scimitar';
     public const MELEE_HOOK = 'hook';
@@ -15,11 +15,11 @@ interface Combat
     public const MELEE_RAPIER = 'rapier/short sword';
     public const MELEE_SABRE = 'sabre';
     public const MELEE_WHIP = 'whip';
-    public const FLINTLOCK = 'Flintlock weapon';
+    public const FLINTLOCK = 'flintlock weapon';
     public const FLINTLOCK_MUSKET = 'musket';
     public const FLINTLOCK_PISTOL = 'pistol';
     public const FLINTLOCK_GRENADE = 'grenade';
-    public const RANGED = 'Ranged weapon';
+    public const RANGED = 'ranged weapon';
     public const RANGED_CROSSBOW = 'crossbow';
     public const RANGED_BOW = 'bow';
     public const RANGED_DAGGER_THROW = 'dagger throw';
