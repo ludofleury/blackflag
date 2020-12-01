@@ -61,10 +61,24 @@ jobs:
       - name: publish reports
         uses: codecov/codecov-action@v1
         with:
-          file: ${{github.workspace}}/reports/test/coverage/clover.xml
+          file: ${{github.workspace}}/reports/test/clover.xml
           flags: unit-tests
           fail_ci_if_error: true
           verbose: false
+
+  mutation:
+    name: mutation test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: create reports directory
+        run: mkdir ${{github.workspace}}/reports
+
+      - name: pull docker test image
+        run: docker pull ludofleury/blackflag-php:test
+
+      - name: infection mutation
+        run: docker run --env XDEBUG_MODE=coverage --env CI=true ludofleury/blackflag-php:test vendor/bin/infection --no-progress --min-covered-msi=90 --min-msi=80 --logger-github |  sed -En "s/file=/file=php\//p"
 
   qa:
     name: analyse

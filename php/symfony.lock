@@ -83,6 +83,21 @@
     "felixfbecker/language-server-protocol": {
         "version": "1.x-dev"
     },
+    "infection/abstract-testframework-adapter": {
+        "version": "0.3.x-dev"
+    },
+    "infection/extension-installer": {
+        "version": "0.1.1"
+    },
+    "infection/include-interceptor": {
+        "version": "0.2.4"
+    },
+    "infection/infection": {
+        "version": "dev-master"
+    },
+    "justinrainbow/json-schema": {
+        "version": "5.x-dev"
+    },
     "ludofleury/github-annotation-path-mapper": {
         "version": "dev-main"
     },
@@ -97,6 +112,9 @@
     },
     "nikic/php-parser": {
         "version": "v4.10.2"
+    },
+    "ondram/ci-detector": {
+        "version": "3.5.1"
     },
     "openlss/lib-array2xml": {
         "version": "1.0.0"
@@ -184,6 +202,12 @@
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
     },
+    "sanmai/later": {
+        "version": "0.1.1"
+    },
+    "sanmai/pipeline": {
+        "version": "v5.x-dev"
+    },
     "sebastian/cli-parser": {
         "version": "1.0-dev"
     },
@@ -231,6 +255,9 @@
     },
     "sebastian/version": {
         "version": "3.0-dev"
+    },
+    "seld/jsonlint": {
+        "version": "1.8.3"
     },
     "symfony/amqp-messenger": {
         "version": "5.2.x-dev"
@@ -354,6 +381,9 @@
     "symfony/polyfill-php80": {
         "version": "1.21-dev"
     },
+    "symfony/process": {
+        "version": "5.2.x-dev"
+    },
     "symfony/redis-messenger": {
         "version": "5.2.x-dev"
     },
@@ -422,6 +452,9 @@
     },
     "symfony/yaml": {
         "version": "5.2.x-dev"
+    },
+    "thecodingmachine/safe": {
+        "version": "v1.3.3"
     },
     "theseer/tokenizer": {
         "version": "1.2.0"

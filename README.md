@@ -2,6 +2,7 @@
 
 [![Build Status](https://github.com/ludofleury/blackflag/workflows/ci/badge.svg?branch=main)](https://github.com/ludofleury/blackflag/actions)
 [![codecov](https://codecov.io/gh/ludofleury/blackflag/branch/main/graph/badge.svg?token=u7d7nhlwb8)](https://codecov.io/gh/ludofleury/blackflag)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fludofleury%2Fblackflag%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/ludofleury/blackflag/main)
 
 PHP application designed to assist role-playing game session for the "Pavillon Noir" game.
 
