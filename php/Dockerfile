@@ -13,9 +13,9 @@ WORKDIR /var/app
 ##############################################################################################################
 FROM base AS dev
 
-RUN curl -sL https://github.com/xdebug/xdebug/archive/3.0.0RC1.tar.gz | tar -xz && \
+RUN curl -sL https://github.com/xdebug/xdebug/archive/3.0.0.tar.gz | tar -xz && \
   mkdir -p /usr/src/php/ext/ && \
-  mv xdebug-3.0.0RC1 /usr/src/php/ext/xdebug && \
+  mv xdebug-3.0.0 /usr/src/php/ext/xdebug && \
   docker-php-ext-install xdebug && \
   echo "memory_limit = -1" >> /usr/local/etc/php/php.ini && \
   echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
@@ -29,9 +29,9 @@ ENV APP_ENV=dev
 ##############################################################################################################
 FROM base as test
 
-RUN curl -sL https://github.com/xdebug/xdebug/archive/3.0.0RC1.tar.gz | tar -xz && \
+RUN curl -sL https://github.com/xdebug/xdebug/archive/3.0.0.tar.gz | tar -xz && \
   mkdir -p /usr/src/php/ext/ && \
-  mv xdebug-3.0.0RC1 /usr/src/php/ext/xdebug && \
+  mv xdebug-3.0.0 /usr/src/php/ext/xdebug && \
   docker-php-ext-install xdebug && \
   echo "memory_limit = -1" >> /usr/local/etc/php/php.ini && \
   echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
