@@ -9,7 +9,7 @@ use DomainException;
 /**
  * Reference the source role-playing game book where a domain rule is specified
  */
-#[Attribute(Attribute::TARGET_ALL | Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_ALL)]
 class Book
 {
     private Isbn $isbn;

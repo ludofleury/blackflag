@@ -12,7 +12,7 @@ use DomainException;
  *
  * example: Some rpg book are not translated yet terms are implemented in english
  */
-#[Attribute(Attribute::TARGET_ALL | Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_ALL)]
 class Term
 {
     /**
