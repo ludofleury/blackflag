@@ -63,7 +63,8 @@ final class PrimaryAttributesTest extends EsTestCase
             'Black beard',
             35,
             true,
-            $attributes
+            $attributes,
+            [],
         );
     }
 
@@ -88,7 +89,8 @@ final class PrimaryAttributesTest extends EsTestCase
                 Perception::name   => 5,
                 Power::name        => 5,
                 Strength::name     => 6,
-            ]
+            ],
+            []
         );
     }
 
@@ -114,7 +116,8 @@ final class PrimaryAttributesTest extends EsTestCase
                 Strength::name     => 6,
                 'test1'            => 1,
                 'test2'            => 1
-            ]
+            ],
+            []
         );
 
     }
@@ -140,7 +143,8 @@ final class PrimaryAttributesTest extends EsTestCase
                 Perception::name   => 5,
                 Power::name        => 5,
                 Strength::name     => 5,
-            ]
+            ],
+            []
         );
     }
 }

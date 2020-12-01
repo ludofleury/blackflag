@@ -9,6 +9,7 @@ class CharacterCreated implements Event
 {
     /**
      * @param array<string, int> $attributes
+     * @param array<array{name: string, level: int, special?: string, pro?: bool}>  $skills
      */
     public function __construct(
         private string $firstname,
@@ -16,7 +17,8 @@ class CharacterCreated implements Event
         private string $nickname,
         private int $age,
         private bool $gender,
-        private array $attributes
+        private array $attributes,
+        private array $skills,
     ) {
     }
 
@@ -29,11 +31,20 @@ class CharacterCreated implements Event
             $data['age'],
             $data['gender'],
             $data['attributes'],
+            $data['skills'],
         );
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{
+     *  firstname: string,
+     *  lastname: string,
+     *  nickname: string,
+     *  age: int,
+     *  gender: bool,
+     *  attributes: array<string, int>,
+     *  skills: array<array{name: string, level: int, special?: string, pro?: bool}>,
+     * }
      */
     public function toArray(): array
     {
@@ -44,6 +55,7 @@ class CharacterCreated implements Event
             'age' => $this->age,
             'gender' => $this->gender,
             'attributes' => $this->attributes,
+            'skills' => $this->skills,
         ];
     }
 
@@ -78,5 +90,13 @@ class CharacterCreated implements Event
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    /**
+     * @return array<array{name: string, level: int, special?: string, pro?: bool}>
+     */
+    public function getSkills(): array
+    {
+        return $this->skills;
     }
 }
