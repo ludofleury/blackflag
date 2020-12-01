@@ -39,6 +39,8 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
     needs: build
     steps:
       - uses: actions/checkout@v2 # required for codecov
@@ -50,7 +52,7 @@ jobs:
         run: docker pull ludofleury/blackflag-php:test
 
       - name: execute tests
-        run: docker run -v ${{github.workspace}}/reports:/var/app/reports --env XDEBUG_MODE=coverage ludofleury/blackflag-php:test vendor/bin/phpunit -c phpunit.xml.dist --printer mheap\\GithubActionsReporter\\Printer |  docker run -i ludofleury/blackflag-php:test vendor/bin/github-annotation-mapper php/
+        run: docker run -v ${{github.workspace}}/reports:/var/app/reports ludofleury/blackflag-php:test vendor/bin/phpunit -c phpunit.xml.dist --printer mheap\\GithubActionsReporter\\Printer |  docker run -i ludofleury/blackflag-php:test vendor/bin/github-annotation-mapper php/
 
       - name: archive tests reports
         uses: actions/upload-artifact@v2
@@ -61,13 +63,41 @@ jobs:
       - name: publish reports
         uses: codecov/codecov-action@v1
         with:
-          file: ${{github.workspace}}/reports/test/coverage/clover.xml
+          file: ${{github.workspace}}/reports/test/clover.xml
           flags: unit-tests
           fail_ci_if_error: true
           verbose: false
 
-  qa:
-    name: analyse
+  mutation:
+    name: mutation
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+    needs: build
+    steps:
+      - name: pull docker test image
+        run: docker pull ludofleury/blackflag-php:test
+
+      - name: infection
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+        run: env > env_file && docker run --env-file env_file ludofleury/blackflag-php:test vendor/bin/infection -j2 --no-interaction --no-progress --min-covered-msi=90 --min-msi=80
+
+  mutation-review:
+    name: review mutation
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+    needs: build
+    steps:
+      - name: pull docker test image
+        run: docker pull ludofleury/blackflag-php:test
+          
+      - name: code review
+        run: docker run ludofleury/blackflag-php:test vendor/bin/infection -j2 --no-interaction --no-progress --logger-github |  sed -En "s/file=/file=php\//p"
+
+  qa-review:
+    name: review quality
     runs-on: ubuntu-latest
     needs: build
     steps:
