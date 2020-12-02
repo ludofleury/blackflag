@@ -19,7 +19,7 @@ Locally run the tests suite with `make sure` or:
 * Acceptable Mutation Score Indicator (MSI): **80%**
 * Acceptable Covered Code Mutation Score Indicator: **90%**
 
-Locally run the tests suite with `make sick` or:
+Locally run the tests suite with `make bulletproof` or:
 
 ```bash
   docker-compose exec php vendor/bin/infection
