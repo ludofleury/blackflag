@@ -40,7 +40,7 @@ abstract class AggregateRoot extends Entity
                         $message->getSequence(),
                         $message->getEvent()::class,
                         $aggregateRoot::class,
-                        $aggregateRoot->getId()->toString()
+                        $aggregateRoot->getAggregateRootId()->toString()
                     )
                 );
             }
@@ -61,7 +61,7 @@ abstract class AggregateRoot extends Entity
         return $aggregateRoot;
     }
 
-    public function getId(): UuidInterface
+    public function getAggregateRootId(): UuidInterface
     {
         return $this->id;
     }
@@ -81,7 +81,7 @@ abstract class AggregateRoot extends Entity
         ++$this->sequence;
         $this->stream[] = new Message(
             static::class,
-            $this->getId(),
+            $this->id,
             $this->sequence,
             $event
         );
