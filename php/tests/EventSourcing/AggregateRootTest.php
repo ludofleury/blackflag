@@ -23,7 +23,7 @@ class AggregateRootTest extends EsTestCase
 
         $this->assertEquals(
             $id,
-            $ar->getId()
+            $ar->getAggregateRootId()
         );
     }
 
