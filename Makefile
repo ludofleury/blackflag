@@ -32,7 +32,7 @@ restart: ## restart local environement
 sure: ## launch test suite & write report in php/reports/test
 	docker-compose exec --env XDEBUG_MODE=coverage php vendor/bin/phpunit --testdox
 
-sick: ## launch mutation test suite
+bulletproof: ## launch mutation test suite
 	docker-compose exec --env XDEBUG_MODE=coverage php vendor/bin/infection
 
 better: ## launch static analysis & write report in php/reports/qa
