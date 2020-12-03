@@ -14,7 +14,7 @@ services:
       - XDEBUG_SESSION=1
 
   postgresql:
-    image: postgres:12
+    image: postgres:13-alpine
     restart: always
     environment:
       POSTGRES_PASSWORD: pirate
