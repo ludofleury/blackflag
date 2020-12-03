@@ -1,6 +1,11 @@
 doctrine:
     dbal:
-        url: '%env(resolve:DATABASE_URL)%'
+        default_connection: default
+        connections:
+            default:
+                url: '%env(resolve:DATABASE_URL)%'
+            query_read:
+                url: '%env(resolve:DATABASE_URL)%'
         types:
             uuid: 'Ramsey\Uuid\Doctrine\UuidType'
 
@@ -9,11 +14,28 @@ doctrine:
         #server_version: '5.7'
     orm:
         auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: false
-        mappings:
-            EventSourcing\Message:
-                type: xml
-                dir: '%kernel.project_dir%/config/event-sourcing'
-                is_bundle: false
-                prefix: EventSourcing
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                auto_mapping: false
+                mappings:
+                    EventSourcing\Message:
+                        type: xml
+                        dir: '%kernel.project_dir%/config/event-sourcing'
+                        is_bundle: false
+                        prefix: EventSourcing
+                        alias: EventSourcing
+            projection:
+                connection: query_read
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                auto_mapping: false
+                mappings:
+                    App\Projection:
+                        mapping: true
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/App/Projection'
+                        is_bundle: false
+                        prefix: App\Projection
+                        alias: Projection

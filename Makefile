@@ -15,8 +15,9 @@ local: ## Install (or reset) & bootstrap local environment
 	docker-compose build
 	$(MAKE) up
 	docker-compose exec php composer install
-	docker-compose exec php bin/console doctrine:database:create
-	docker-compose exec php bin/console doctrine:schema:create
+	docker-compose exec php bin/console doctrine:database:create --em default
+	docker-compose exec php bin/console doctrine:schema:create --em default
+	docker-compose exec php bin/console doctrine:schema:create --em projection
 	$(MAKE) down
 
 up: ## start the local environement

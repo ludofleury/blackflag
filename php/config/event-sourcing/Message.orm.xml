@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity  name="EventSourcing\Message" table="events" repository-class="App\EventSourcing\EventStore">
+  <entity  name="EventSourcing\Message" table="events" schema="store" repository-class="App\EventSourcing\EventStore">
     <indexes>
       <index name="ar_idx" columns="aggregate_root_id,aggregate_root_type,sequence"/>
     </indexes>
