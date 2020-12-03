@@ -9,7 +9,7 @@ use Rpg\Reference as RPG;
 use RuntimeException;
 
 /**
- * Official skill rule index
+ * Official skill domain rule index
  */
 #[RPG\Book(ISBN: '978-2-36328-252-1', page: 14)]
 final class Registry implements Knowledge, Technical, Maritime, Physical, Social, Combat
@@ -24,22 +24,26 @@ final class Registry implements Knowledge, Technical, Maritime, Physical, Social
     private static bool $loaded = false;
 
     /**
-     * @return bool Whether or not the name match any kind of skill
+     * @return bool Whether or not the name match any kind of skill domain
      */
-    public static function hasSkill(string $name): bool
+    public static function has(string $name): bool
     {
-        return self::has($name);
+        if (!self::$loaded) {
+            self::load();
+        }
+
+        return isset(self::$rules[$name]);
     }
 
     /**
      * @return bool Whether or not the name match a "main" skill (simple or specialized, but not specialization)
      */
-    public static function hasMainSkill(string $name): bool
+    public static function hasDomain(string $name): bool
     {
         return self::has($name) && !(self::get($name) & self::SPECIAL);
     }
 
-    public static function getDefaultSkillRule(string $name): Rule
+    public static function getDefaultRule(string $name): Rule
     {
         if (!self::has($name)) {
             throw new SkillException(sprintf('Unknown skill "%s"', $name));
@@ -59,14 +63,6 @@ final class Registry implements Knowledge, Technical, Maritime, Physical, Social
             $type,
             $rule & self::PRO ? true : false,
         );
-    }
-    private static function has(string $name): bool
-    {
-        if (!self::$loaded) {
-            self::load();
-        }
-
-        return isset(self::$rules[$name]);
     }
 
     private static function get(string $name): int

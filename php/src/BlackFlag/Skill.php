@@ -5,13 +5,12 @@ namespace BlackFlag;
 
 use BlackFlag\Skill\Exception\SkillException;
 use BlackFlag\Skill\Factory;
-use BlackFlag\Skill\Registry;
-use DomainException;
-use LogicException;
+use BlackFlag\Skill\Level;
+use BlackFlag\Skill\Domain;
 use Rpg\Reference as RPG;
 
 /**
- * Immutable value object representing a Black Flag skill and its level
+ * Immutable value object representing a Black Flag skill: domain, level & professional qualification
  *
  * - Supports:
  * - only registered main/macro skill
@@ -23,57 +22,40 @@ final class Skill
 {
     use Factory;
 
-    private string $name;
-    private ?string $specialization;
-    private int $level;
+    private Domain $domain;
+    private Level $level;
     private bool $isProfessional;
 
-    public function __construct(string $name, ?string $specialization, int $level, bool $isProfessional)
+    public function __construct(Domain $domain, int $level, bool $isProfessional)
     {
-        if (!Registry::hasMainSkill($name)) {
-            !Registry::hasSkill($name)
-                ? throw new DomainException(sprintf('Unknown skill "%s"', $name))
-                : throw new LogicException(sprintf('"%s" is a specialization, instantiate with BlackFlag\\Skill("[main skill]", "%s", ...) instead', $name, $name))
-            ;
-        }
-
-        if ($level < 0) {
-            throw new SkillException(sprintf('"%s": %d is too low, minimum %d', $name, $level, 0));
-        }
-
-        if ($level > 7) {
-            throw new SkillException(sprintf('"%s": %d is too high, maximum %d', $name, $level, 7));
-        }
-
-        $this->name = $name;
-        $this->specialization = $specialization;
-        $this->level = $level;
+        $this->domain = $domain;
+        $this->level = new Level($level);
         $this->isProfessional = $isProfessional;
     }
 
     public function isDeveloped(): bool
     {
-        return $this->level > 0;
+        return $this->level->getValue() > 0;
     }
 
     public function isSpecialized(): bool
     {
-        return $this->specialization !== null;
+        return $this->domain->isSpecialized();
     }
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->domain->getName();
     }
 
     public function getSpecialization(): ?string
     {
-        return $this->specialization;
+        return $this->domain->getSpecialization();
     }
 
     public function getLevel(): int
     {
-        return $this->level;
+        return $this->level->getValue();
     }
 
     public function isProfessional(): bool
@@ -83,26 +65,26 @@ final class Skill
 
     public function equals(self $other): bool
     {
-        return $this->level === $other->level;
+        return $this->level->equals($other->level);
     }
 
     public function higherThan(self $other): bool
     {
-        return $this->level > $other->level;
+        return $this->level->higherThan($other->level);
     }
 
     public function higherThanOrEqual(self $other): bool
     {
-        return $this->level >= $other->level;
+        return $this->level->higherThanOrEqual($other->level);
     }
 
     public function lowerThan(self $other): bool
     {
-        return $this->level < $other->level;
+        return $this->level->lowerThan($other->level);
     }
 
     public function lowerThanOrEqual(self $other): bool
     {
-        return $this->level <= $other->level;
+        return $this->level->lowerThanOrEqual($other->level);
     }
 }

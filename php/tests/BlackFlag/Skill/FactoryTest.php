@@ -49,7 +49,7 @@ class FactoryTest extends TestCase
     public function testCannotInstantiateUnknownSkill(): void
     {
         $this->expectException(Skill\Exception\SkillException::class);
-        $this->expectExceptionMessage('Unknown skill ID "BlackFlag\\Skill\\Registry::RANDOM"');
+        $this->expectExceptionMessage('Unknown skill constant "BlackFlag\\Skill\\Registry::RANDOM"');
 
         /** @var Factory|object $behavior */
         $behavior = $this->getObjectForTrait(Factory::class);
