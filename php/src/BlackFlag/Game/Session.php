@@ -7,11 +7,12 @@ use BlackFlag\Game\Event\IntentionStated;
 use BlackFlag\Game\Event\SessionStarted;
 use BlackFlag\Game\Exception\CharacterNotRegistered;
 use BlackFlag\PlayableCharacter\CharacterId;
+use BlackFlag\Resolution\Efficiency;
 use BlackFlag\Resolution\Facility;
+use BlackFlag\Skill\Domain;
 use EventSourcing\AggregateRoot;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Safe\Exceptions\SessionException;
 
 class Session extends AggregateRoot
 {
@@ -35,7 +36,12 @@ class Session extends AggregateRoot
         return $session;
     }
 
-    public function registerIntention(CharacterId $characterId, string $attribute, string $skill, array $modifiers): void
+    public function getId(): SessionId
+    {
+        return new SessionId($this->getAggregateRootId());
+    }
+
+    public function registerIntention(CharacterId $characterId, string $attribute, Domain $skill): void
     {
         if (!$this->roster->hasRegistered($characterId)) {
             throw new CharacterNotRegistered(sprintf('Unable to state intention: character "%s" is not registered to this session', $characterId->toString()));
@@ -47,7 +53,6 @@ class Session extends AggregateRoot
                 $characterId,
                 $attribute,
                 $skill,
-                $modifiers,
             )
         );
     }
@@ -56,7 +61,7 @@ class Session extends AggregateRoot
     {
     }
 
-    public function resolveAction(CharacterId $characterId, $efficiency, Facility $facility, array $modifiers, ?UuidInterface $relatedIntention = null): void
+    public function resolveAction(CharacterId $characterId, Efficiency $efficiency, Facility $facility, ?UuidInterface $relatedIntention = null): void
     {
 
     }
@@ -71,10 +76,5 @@ class Session extends AggregateRoot
         $characterId = $event->getCharacterId();
         $intentionId = $event->getIntentionId();
         $this->intentions[$characterId->toString()][$intentionId->toString()] = true;
-    }
-
-    protected function applyActionResolved($event): void
-    {
-
     }
 }
