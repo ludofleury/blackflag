@@ -6,6 +6,7 @@ namespace BlackFlag\PlayableCharacter;
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
 use BlackFlag\PlayableCharacter\Exception\SkillNotLearned;
 use BlackFlag\Skill;
+use BlackFlag\Skill\Domain;
 use EventSourcing\ChildEntity;
 
 class Skills extends ChildEntity
@@ -35,8 +36,7 @@ class Skills extends ChildEntity
             $index = isset($data['special']) ? $data['special'] : $data['name'];
 
             $this->skills[$index] = new Skill(
-                $data['name'],
-                isset($data['special']) ? $data['special'] : null,
+                new Domain($data['name'], isset($data['special']) ? $data['special'] : null),
                 $data['level'],
                 isset($data['pro']) ? $data['pro'] : false,
             );

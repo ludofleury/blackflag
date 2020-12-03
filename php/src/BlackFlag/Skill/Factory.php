@@ -82,11 +82,11 @@ trait Factory
     public static function __callStatic(string $id, array $arguments): Skill
     {
         if (!defined(sprintf('%s::%s', Registry::class, $id))) {
-            throw new SkillException(sprintf('Unknown skill ID "%s::%s"', Registry::class, $id));
+            throw new SkillException(sprintf('Unknown skill constant "%s::%s"', Registry::class, $id));
         }
 
         $name = constant(sprintf('%s::%s', Registry::class, $id));
-        $rule = Registry::getDefaultSkillRule($name);
+        $rule = Registry::getDefaultRule($name);
         $name = $rule->getName();
         $specialization = null;
         $isProfessional = $rule->isProfessional();
@@ -98,14 +98,13 @@ trait Factory
 
         if ($rule->isSpecialized()) {
             $specialization = $arguments[0];
-            $specializationRule = Registry::getDefaultSkillRule($arguments[0]);
+            $specializationRule = Registry::getDefaultRule($arguments[0]);
             $isProfessional = $specializationRule->isProfessional();
             $level = $arguments[1];
         }
 
         return new Skill(
-            $name,
-            $specialization,
+            new Domain($name, $specialization),
             $level,
             $isProfessional
         );
