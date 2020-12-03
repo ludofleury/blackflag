@@ -15,7 +15,7 @@ class SessionStarted implements Event
 
     private MasterId $masterId;
 
-    /** @var array<int, CharacterId|Identifier>  */
+    /** @var array<int, CharacterId>  */
     private array $charactersIds;
 
     public function __construct(
@@ -30,28 +30,28 @@ class SessionStarted implements Event
     static public function fromArray(array $data): SessionStarted
     {
         return new self(
-            MasterId::fromString($data['master']),
-            ...self::normalizeIdentifiers(CharacterId::class, $data['characters'])
+            MasterId::fromString($data['masterId']),
+            ...self::normalizeIdentifiers(CharacterId::class, $data['characterIds'])
         );
     }
 
     /**
-     * @return array{master: string, characters: string[]}
+     * @return array{masterId: string, characterIds: string[]}
      */
     public function toArray(): array
     {
         return [
-            'master' => $this->masterId->toString(),
-            'characters' => $this->denormalizeIdentifiers(...$this->charactersIds)
+            'masterId' => $this->masterId->toString(),
+            'characterIds' => $this->denormalizeIdentifiers(...$this->charactersIds)
         ];
     }
 
-    /** @var array<int, CharacterId|Identifier>  */
     public function getMasterId(): MasterId
     {
         return $this->masterId;
     }
 
+    /** @return array<int, CharacterId>  */
     public function getCharactersIds(): array
     {
         return $this->charactersIds;

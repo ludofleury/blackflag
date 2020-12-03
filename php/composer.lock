@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cc775ae7ed62a2a7188e1d808998e6d",
+    "content-hash": "100c875ee86d3443a763937a586a4d45",
     "packages": [
         {
             "name": "brick/math",
@@ -1634,16 +1634,16 @@
         },
         {
             "name": "ramsey/uuid-doctrine",
-            "version": "1.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid-doctrine.git",
-                "reference": "9facc4689547e72e03c1e18df4a0ee162b2778b0"
+                "reference": "15961598d1fb440444c345b41aec9b1e09ab91b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid-doctrine/zipball/9facc4689547e72e03c1e18df4a0ee162b2778b0",
-                "reference": "9facc4689547e72e03c1e18df4a0ee162b2778b0",
+                "url": "https://api.github.com/repos/ramsey/uuid-doctrine/zipball/15961598d1fb440444c345b41aec9b1e09ab91b7",
+                "reference": "15961598d1fb440444c345b41aec9b1e09ab91b7",
                 "shasum": ""
             },
             "require": {
@@ -1653,10 +1653,11 @@
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "^1",
-                "mockery/mockery": "^0.9 | ^1",
+                "mockery/mockery": "^0.9.11 | ^1",
                 "phpunit/phpunit": "^4.8.36 | ^5.7 | ^6.5 | ^7",
                 "squizlabs/php_codesniffer": "^3.5"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1682,7 +1683,13 @@
                 "source": "https://github.com/ramsey/uuid-doctrine",
                 "wiki": "https://github.com/ramsey/uuid/wiki"
             },
-            "time": "2020-01-27T05:09:17+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/ramsey",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-04-26T19:48:10+00:00"
         },
         {
             "name": "symfony/amqp-messenger",
@@ -8592,6 +8599,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "ramsey/uuid-doctrine": 20,
         "infection/infection": 20,
         "mheap/phpunit-github-actions-printer": 20,
         "phpstan/extension-installer": 20,
@@ -8603,10 +8611,10 @@
         "php": "8.*",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "ext-pdo": "*",
         "ext-pdo_pgsql": "*",
-        "ext-zip": "*",
-        "ext-json": "*"
+        "ext-zip": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

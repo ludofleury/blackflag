@@ -33,7 +33,7 @@ sure: ## launch test suite & write report in php/reports/test
 	docker-compose exec --env XDEBUG_MODE=coverage php vendor/bin/phpunit --testdox
 
 bulletproof: ## launch mutation test suite
-	docker-compose exec --env XDEBUG_MODE=coverage php vendor/bin/infection
+	docker-compose exec --env XDEBUG_MODE=coverage php sh -c 'vendor/bin/infection -j$$(nproc)'
 
 better: ## launch static analysis & write report in php/reports/qa
 	docker-compose exec php vendor/bin/phpstan analyse

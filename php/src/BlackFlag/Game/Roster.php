@@ -29,7 +29,7 @@ class Roster extends ChildEntity
     {
         $characterIds = $sessionStarted->getCharactersIds();
         foreach ($characterIds as $id) {
-            $this->registered[$id->toString()] = $characterIds;
+            $this->registered[$id->toString()] = $id;
         }
     }
 }
