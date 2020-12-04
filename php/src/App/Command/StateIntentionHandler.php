@@ -4,12 +4,15 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\CommandHandler;
+use App\Repository\CharacterRepository;
 use App\Repository\SessionRepository;
+use BlackFlag\PlayableCharacter\Exception\CharacterNotFoundException;
 
 class StateIntentionHandler implements CommandHandler
 {
     public function __construct(
-        private SessionRepository $sessionRepository
+        private SessionRepository $sessionRepository,
+        private CharacterRepository $characterRepository,
     )
     {
     }
@@ -17,6 +20,12 @@ class StateIntentionHandler implements CommandHandler
     public function __invoke(StateIntention $command): void
     {
         $session = $this->sessionRepository->load($command->getSessionId());
+
+        try {
+            $character = $this->characterRepository->load($command->getCharacterId());
+        } catch (CharacterNotFoundException $exception) {
+            throw $exception;
+        }
 
         $session->registerIntention(
             $command->getCharacterId(),

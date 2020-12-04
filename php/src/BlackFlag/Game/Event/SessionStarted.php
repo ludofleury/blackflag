@@ -6,7 +6,6 @@ namespace BlackFlag\Game\Event;
 use BlackFlag\Game\MasterId;
 use BlackFlag\PlayableCharacter\CharacterId;
 use EventSourcing\Event;
-use EventSourcing\Identifier;
 use EventSourcing\Normalizer\IdentifiersNormalizer;
 
 class SessionStarted implements Event

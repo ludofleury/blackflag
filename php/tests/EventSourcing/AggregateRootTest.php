@@ -12,7 +12,6 @@ use EventSourcing\Message;
 use EventSourcing\Stream;
 use EventSourcing\Testing\EsTestCase;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 class AggregateRootTest extends EsTestCase
 {

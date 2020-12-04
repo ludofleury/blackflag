@@ -1,8 +1,8 @@
 doctrine:
     dbal:
-        default_connection: default
+        default_connection: event_store
         connections:
-            default:
+            event_store:
                 url: '%env(resolve:DATABASE_URL)%'
             query_read:
                 url: '%env(resolve:DATABASE_URL)%'
@@ -14,10 +14,10 @@ doctrine:
         #server_version: '5.7'
     orm:
         auto_generate_proxy_classes: true
-        default_entity_manager: default
+        default_entity_manager: event
         entity_managers:
-            default:
-                connection: default
+            event:
+                connection: event_store
                 naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
                 auto_mapping: false
                 mappings:
@@ -27,7 +27,7 @@ doctrine:
                         is_bundle: false
                         prefix: EventSourcing
                         alias: EventSourcing
-            projection:
+            read:
                 connection: query_read
                 naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
                 auto_mapping: false
@@ -35,7 +35,7 @@ doctrine:
                     App\Projection:
                         mapping: true
                         type: annotation
-                        dir: '%kernel.project_dir%/src/App/Projection'
+                        dir: '%kernel.project_dir%/src/App/Projection/'
                         is_bundle: false
                         prefix: App\Projection
                         alias: Projection

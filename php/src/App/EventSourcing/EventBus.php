@@ -5,7 +5,9 @@ namespace App\EventSourcing;
 
 use EventSourcing\EventBus as EventBusInterface;
 use EventSourcing\Stream;
+use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\DispatchAfterCurrentBusStamp;
 
 final class EventBus implements EventBusInterface
 {
@@ -19,7 +21,9 @@ final class EventBus implements EventBusInterface
     public function dispatch(Stream $stream): void
     {
         foreach ($stream as $message) {
-            $this->eventBus->dispatch($message);
+            $this->eventBus->dispatch(
+                (new Envelope($message))->with(new DispatchAfterCurrentBusStamp())
+            );
         }
     }
 }

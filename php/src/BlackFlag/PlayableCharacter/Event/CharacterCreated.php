@@ -8,7 +8,17 @@ use EventSourcing\Event;
 class CharacterCreated implements Event
 {
     /**
-     * @param array<string, int> $attributes
+     * @param array{
+     *     adaptability: int,
+     *     charisma: int,
+     *     constitution: int,
+     *     dexterity: int,
+     *     expression: int,
+     *     knowledge: int,
+     *     perception: int,
+     *     power: int,
+     *     strength: int
+     *  } $attributes
      * @param array<array{name: string, level: int, special?: string, pro?: bool}>  $skills
      */
     public function __construct(
@@ -42,7 +52,17 @@ class CharacterCreated implements Event
      *  nickname: string,
      *  age: int,
      *  gender: bool,
-     *  attributes: array<string, int>,
+     *  attributes: array{
+     *     adaptability: int,
+     *     charisma: int,
+     *     constitution: int,
+     *     dexterity: int,
+     *     expression: int,
+     *     knowledge: int,
+     *     perception: int,
+     *     power: int,
+     *     strength: int
+     *  },
      *  skills: array<array{name: string, level: int, special?: string, pro?: bool}>,
      * }
      */
@@ -85,7 +105,17 @@ class CharacterCreated implements Event
     }
 
     /**
-     * @return array<string, int>
+     * @return array{
+     *  adaptability: int,
+     *  charisma: int,
+     *  constitution: int,
+     *  dexterity: int,
+     *  expression: int,
+     *  knowledge: int,
+     *  perception: int,
+     *  power: int,
+     *  strength: int
+     * }
      */
     public function getAttributes(): array
     {
