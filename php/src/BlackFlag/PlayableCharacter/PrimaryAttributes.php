@@ -14,6 +14,7 @@ use BlackFlag\Attribute\Primary\Perception;
 use BlackFlag\Attribute\Primary\Power;
 use BlackFlag\Attribute\Primary\Strength;
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
+use BlackFlag\PlayableCharacter\Event\CharacterImprovedAttribute;
 use BlackFlag\PlayableCharacter\Exception\AttributesMissingException;
 use BlackFlag\PlayableCharacter\Exception\AttributesTooLowException;
 use BlackFlag\PlayableCharacter\Exception\UnknownAttributesException;
@@ -75,4 +76,10 @@ final class PrimaryAttributes extends ChildEntity
             );
         }
     }
+
+    protected function applyCharacterImprovedAttribute(CharacterImprovedAttribute $event): void
+    {
+        $this->attributes[$event->getName()] = $this->attributes[$event->getName()]->add($event->getProgress());
+    }
+
 }

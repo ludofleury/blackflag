@@ -37,10 +37,19 @@ class TestController
         CharacterRepository $characterRepository,
     ): Response
     {
-        $this->createCharacter($characterRepository);
+        //$this->createCharacter($characterRepository);
+        $this->improveAttribute($characterRepository);
         // $this->createSession($sessionRepository, $commandBus);
         $logger->info('test debug controller called');
         return new Response('<html lang="en"><body>test debug</body></html>');
+    }
+
+    private function improveAttribute(CharacterRepository $characterRepository)
+    {
+        $id = Uuid::fromString('1749170d-0140-41b3-9b5f-ab9a63c7b1f1');
+        $character = $characterRepository->load($id);
+        $character->improveAttribute(Charisma::name, +1);
+        $characterRepository->save($character);
     }
 
     private function createCharacter(CharacterRepository $characterRepository)

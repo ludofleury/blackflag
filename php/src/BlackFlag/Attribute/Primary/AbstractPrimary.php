@@ -14,4 +14,9 @@ abstract class AbstractPrimary extends AbstractStatistic implements Primary
     {
         parent::__construct($value, 2, 9);
     }
+
+    public function add(int $value): self
+    {
+        return new static($value + $this->value);
+    }
 }

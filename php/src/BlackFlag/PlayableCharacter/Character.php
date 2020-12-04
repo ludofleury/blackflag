@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BlackFlag\PlayableCharacter;
 
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
+use BlackFlag\PlayableCharacter\Event\CharacterImprovedAttribute;
 use BlackFlag\Resolution\SkillName;
 use BlackFlag\Skill;
 use EventSourcing\AggregateRoot;
@@ -59,6 +60,11 @@ final class Character extends AggregateRoot
     public function getSkill(string $name): Skill
     {
         return $this->skills->get($name);
+    }
+
+    public function improveAttribute(string $name, int $level): void
+    {
+        $this->apply(new CharacterImprovedAttribute($name, $level));
     }
 
     protected function applyCharacterCreated(CharacterCreated $event): void
