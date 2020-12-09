@@ -66,7 +66,7 @@ class CharacterAttributes
      *  perception: int,
      *  power: int,
      *  strength: int
-     * } $attributes
+     *  } $attributes
      */
     public function __construct(array $attributes)
     {

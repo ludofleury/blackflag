@@ -15,8 +15,7 @@ class StateIntention
         private string $attributeName,
         private string $skillName,
         private ?string $skillSpecialization = null,
-    )
-    {
+    ) {
     }
 
     public function getSessionId(): SessionId

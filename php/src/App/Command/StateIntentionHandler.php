@@ -13,8 +13,7 @@ class StateIntentionHandler implements CommandHandler
     public function __construct(
         private SessionRepository $sessionRepository,
         private CharacterRepository $characterRepository,
-    )
-    {
+    ) {
     }
 
     public function __invoke(StateIntention $command): void
@@ -37,6 +36,6 @@ class StateIntentionHandler implements CommandHandler
     }
 }
 /**
-joueur -> request opportunity -> buffer -> mj validate -> roll dice -> success: perform action
-                                        -> mj refuse                -> fail: register attempt
+ * joueur -> request opportunity -> buffer -> mj validate -> roll dice -> success: perform action
+ * -> mj refuse                -> fail: register attempt
  */

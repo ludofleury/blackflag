@@ -7,7 +7,6 @@ use App\Projection\CharacterSheet;
 use App\ProjectionEntityManager;
 use App\Projector;
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
-use BlackFlag\PlayableCharacter\Event\CharacterImprovedAttribute;
 use EventSourcing\Message;
 use EventSourcing\MessageHandler;
 

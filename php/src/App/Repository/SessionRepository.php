@@ -3,14 +3,15 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use BlackFlag\Game\Session;
 use BlackFlag\Game\Repository;
+use BlackFlag\Game\Session;
 use BlackFlag\Game\SessionId;
 use EventSourcing\EventBus;
 use EventSourcing\EventStore;
 use EventSourcing\Exception\AggregateRootNotFoundException;
 use EventSourcing\Repository as EsRepository;
 use Ramsey\Uuid\UuidInterface;
+use RuntimeException;
 
 class SessionRepository extends EsRepository implements Repository
 {
@@ -25,7 +26,7 @@ class SessionRepository extends EsRepository implements Repository
             /** @var Session $session */
             $session = parent::load($sessionId instanceof SessionId ? $sessionId->getValue() : $sessionId);
         } catch (AggregateRootNotFoundException $exception) {
-            throw new \RuntimeException(
+            throw new RuntimeException(
                 sprintf('Session "%s" not found', $sessionId->toString()),
                 0,
                 $exception

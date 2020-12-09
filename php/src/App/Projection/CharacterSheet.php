@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Projection;
 
-use Ramsey\Uuid\UuidInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity()
@@ -66,7 +66,7 @@ class CharacterSheet
      *  perception: int,
      *  power: int,
      *  strength: int
-     * } $attributes
+     *  } $attributes
      * @param array<array{name: string, level: int, special?: string, pro?: bool}> $skills
      */
     public function __construct(

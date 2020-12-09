@@ -77,7 +77,7 @@ final class Registry
     private static function load(): void
     {
         $rootDir = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
-        $file = $rootDir . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'official-skills.php';
+        $file = $rootDir . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'skill-default-rules.php';
 
         if (!file_exists($file)) {
             throw new RuntimeException('Unable to load official skill rules'); // @codeCoverageIgnore
