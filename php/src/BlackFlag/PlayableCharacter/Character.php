@@ -25,8 +25,6 @@ final class Character extends AggregateRoot
 
     private Skills $skills;
 
-//    private SecondaryAttributes $secondaries;
-
     /**
      * @param array{
      *     adaptability: int,

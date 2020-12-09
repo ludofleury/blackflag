@@ -7,9 +7,7 @@ use BlackFlag\Attribute\Exception\InvalidLevel;
 use Rpg\Reference as RPG;
 
 #[RPG\Book(ISBN: '978-2-36328-252-1', page: 14)]
-#[RPG\Term(lang: 'fr', text: 'niveau de caractéristique')]
-#[RPG\Term(lang: 'fr', text: 'valeur de métier')]
-#[RPG\Term(lang: 'fr', text: 'valeur de commandement')]
+#[RPG\Term(lang: 'fr', text: 'niveau de caractéristique, valeur de métier et valeur de commandement')]
 final class Level
 {
     public const MINIMUM = 2;

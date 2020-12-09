@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Embeddable()
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class CharacterAttributes
 {

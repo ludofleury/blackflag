@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BlackFlag\Attribute\Special;
 
+use Rpg\Reference as RPG;
 use DomainException;
 
 #[RPG\Book(ISBN: '978-2-36328-252-1', page: 13)]
@@ -16,7 +17,7 @@ class Rank
     const BOATSWAIN = 'boatswain';
     const GUNNER_MATE = 'gunner mate';
 
-    private const MAP = [
+    private static $list = [
       self::CAPTAIN => true,
       self::FIRST_MATE => true,
       self::GUNNER => true,
@@ -29,7 +30,7 @@ class Rank
 
     public function __construct(string $name)
     {
-        if (!isset(self::MAP[$name])) {
+        if (!isset(self::$list[$name])) {
             throw new DomainException(sprintf('Unknown rank "%s"', $name));
         }
 
