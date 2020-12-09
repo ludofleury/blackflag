@@ -64,10 +64,4 @@ final class Attributes extends ChildEntity
             );
         }
     }
-
-    protected function applyCharacterImprovedAttribute(CharacterImprovedAttribute $event): void
-    {
-        $this->characteristics[$event->getName()] = $this->characteristics[$event->getName()]->add($event->getProgress());
-    }
-
 }

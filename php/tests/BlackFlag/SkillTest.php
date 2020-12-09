@@ -5,9 +5,8 @@ namespace Tests\BlackFlag;
 
 use BlackFlag\Skill;
 use BlackFlag\Skill\Domain;
-use BlackFlag\Skill\DOmain\Knowledge;
+use BlackFlag\Skill\Domain\Knowledge;
 use BlackFlag\Skill\Exception\SkillException;
-use BlackFlag\Skill\Level;
 use Generator;
 use PHPUnit\Framework\TestCase;
 

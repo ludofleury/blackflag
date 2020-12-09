@@ -71,11 +71,6 @@ final class Character extends AggregateRoot
         return $this->skills->get($name);
     }
 
-    public function improveAttribute(string $name, int $level): void
-    {
-        $this->apply(new CharacterImprovedAttribute($name, $level));
-    }
-
     protected function applyCharacterCreated(CharacterCreated $event): void
     {
         $this->firstname = $event->getFirstname();

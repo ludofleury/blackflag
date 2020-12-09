@@ -20,6 +20,7 @@ class Characteristic
     public const POWER = 'power';
     public const STRENGTH = 'strength';
 
+    /** @var array<string, true>  */
     private static array $list = [
         self::ADAPTABILITY => true,
         self::CHARISMA => true,
@@ -47,6 +48,7 @@ class Characteristic
         return $this->name;
     }
 
+    /** @return array<int, string> */
     public static function list(): array
     {
         return array_keys(self::$list);

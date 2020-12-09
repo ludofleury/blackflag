@@ -29,26 +29,9 @@ class CharacterSheetProjector extends MessageHandler implements Projector
             $characterCreated->getNickname(),
             $characterCreated->getAge(),
             0,
-            $characterCreated->getAttributes(),
+            $characterCreated->getCharacteristics(),
             $characterCreated->getSkills()
         );
-
-        $this->persister->persist($sheet);
-        $this->persister->flush();
-    }
-
-    protected function applyCharacterImprovedAttribute(CharacterImprovedAttribute $event, Message $message): void
-    {
-        $repository = $this->persister->getRepository(CharacterSheet::class);
-        $sheet = $repository->find($message->getAggregateRootId());
-
-        if ($sheet === null) {
-            throw new \RuntimeException('Unable to retrieve character sheet');
-        }
-
-        $attribute = $event->getName();
-
-        $sheet->attributes->$attribute += $event->getProgress();
 
         $this->persister->persist($sheet);
         $this->persister->flush();

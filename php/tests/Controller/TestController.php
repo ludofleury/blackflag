@@ -6,21 +6,12 @@ namespace Tests\Controller;
 use App\Command\StateIntention;
 use App\Repository\CharacterRepository;
 use App\Repository\SessionRepository;
-use BlackFlag\Attribute\Primary\Adaptability;
-use BlackFlag\Attribute\Primary\Charisma;
-use BlackFlag\Attribute\Primary\Constitution;
-use BlackFlag\Attribute\Primary\Dexterity;
-use BlackFlag\Attribute\Primary\Expression;
-use BlackFlag\Attribute\Primary\Knowledge;
-use BlackFlag\Attribute\Primary\Perception;
-use BlackFlag\Attribute\Primary\Power;
-use BlackFlag\Attribute\Primary\Strength;
+use BlackFlag\Attribute\Characteristic;
 use BlackFlag\Game\MasterId;
 use BlackFlag\Game\Session;
 use BlackFlag\PlayableCharacter\Character;
 use BlackFlag\PlayableCharacter\CharacterId;
-use BlackFlag\Skill\Combat;
-use BlackFlag\Skill\Technical;
+use BlackFlag\Skill\Domain\{Combat,Technical};
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,22 +28,14 @@ class TestController
         CharacterRepository $characterRepository,
     ): Response
     {
-        //$this->createCharacter($characterRepository);
-        $this->improveAttribute($characterRepository);
+        // $this->createCharacter($characterRepository);
+        // $this->improveAttribute($characterRepository);
         // $this->createSession($sessionRepository, $commandBus);
         $logger->info('test debug controller called');
         return new Response('<html lang="en"><body>test debug</body></html>');
     }
 
-    private function improveAttribute(CharacterRepository $characterRepository)
-    {
-        $id = Uuid::fromString('1749170d-0140-41b3-9b5f-ab9a63c7b1f1');
-        $character = $characterRepository->load($id);
-        $character->improveAttribute(Charisma::name, +1);
-        $characterRepository->save($character);
-    }
-
-    private function createCharacter(CharacterRepository $characterRepository)
+    private function createCharacter(CharacterRepository $characterRepository): void
     {
         $john = Character::create(
             'John',
@@ -61,15 +44,15 @@ class TestController
             35,
             true,
             [
-                Adaptability::name => 5,
-                Charisma::name     => 5,
-                Constitution::name => 5,
-                Dexterity::name    => 5,
-                Expression::name   => 5,
-                Knowledge::name    => 5,
-                Perception::name   => 5,
-                Power::name        => 5,
-                Strength::name     => 6,
+                Characteristic::ADAPTABILITY => 5,
+                Characteristic::CHARISMA     => 5,
+                Characteristic::CONSTITUTION => 5,
+                Characteristic::DEXTERITY    => 5,
+                Characteristic::EXPRESSION   => 5,
+                Characteristic::KNOWLEDGE    => 5,
+                Characteristic::PERCEPTION   => 5,
+                Characteristic::POWER        => 5,
+                Characteristic::STRENGTH     => 6,
             ],
             [
                 ['name' => Combat::DODGING, 'level' => 1],
@@ -81,7 +64,7 @@ class TestController
         $characterRepository->save($john);
     }
 
-    private function createSession(SessionRepository $sessionRepository, MessageBusInterface $commandBus)
+    private function createSession(SessionRepository $sessionRepository, MessageBusInterface $commandBus): void
     {
         $john = new CharacterId(Uuid::uuid4());
 
