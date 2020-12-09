@@ -1,4 +1,4 @@
-FROM php:8.0.0RC5-fpm-alpine AS base
+FROM php:8-fpm-alpine AS base
 
 RUN \
   # zip/unzip: easing composer deps fetching
@@ -23,6 +23,9 @@ RUN curl -sL https://github.com/xdebug/xdebug/archive/3.0.0.tar.gz | tar -xz && 
 
 ARG XDEBUG_CLIENT_HOST
 RUN echo "xdebug.client_host=${XDEBUG_CLIENT_HOST}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# local cache in the container to increase performance in local
+RUN mkdir /var/cache/symfony && chown -R nobody:nobody /var/cache/symfony && chmod -R 777 /var/cache/symfony
 
 ENV APP_ENV=dev
 

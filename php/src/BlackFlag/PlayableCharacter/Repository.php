@@ -9,5 +9,5 @@ interface Repository
 {
     public function save(Character $character): void;
 
-    public function load(UuidInterface $uuid): Character;
+    public function load(CharacterId $characterId): Character;
 }

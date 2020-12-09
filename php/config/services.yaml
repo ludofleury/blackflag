@@ -17,6 +17,7 @@ services:
         resource: '../src/App/'
         exclude:
             - '../src/App/Kernel.php'
+            - '../src/App/Projection/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -27,6 +28,20 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    _instanceof:
+        # all services implementing the CommandHandler will be registered on the command.bus bus
+        App\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+        App\Projector:
+            tags:
+                - { name: messenger.message_handler, bus: event.bus }
+
     # EventSourcing interface mapping
     EventSourcing\EventStore: '@App\EventSourcing\EventStore'
     EventSourcing\EventBus: '@App\EventSourcing\EventBus'
+
+    App\ProjectionEntityManager:
+        arguments:
+            $wrapped: '@doctrine.orm.read_entity_manager'

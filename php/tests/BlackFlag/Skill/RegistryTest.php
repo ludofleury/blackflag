@@ -12,7 +12,7 @@ class RegistryTest extends TestCase
 {
     public function testProvidesOfficialSkillDefaultRules(): void
     {
-        $rule = Registry::getDefaultSkillRule('ballistics');
+        $rule = Registry::getDefaultRule('ballistics');
         $this->assertInstanceOf(Rule::class, $rule);
     }
 
@@ -20,6 +20,6 @@ class RegistryTest extends TestCase
     {
         $this->expectException(SkillException::class);
         $this->expectExceptionMessage('Unknown skill "random"');
-        Registry::getDefaultSkillRule('random');
+        Registry::getDefaultRule('random');
     }
 }

@@ -8,7 +8,17 @@ use EventSourcing\Event;
 class CharacterCreated implements Event
 {
     /**
-     * @param array<string, int> $attributes
+     * @param array{
+     *     adaptability: int,
+     *     charisma: int,
+     *     constitution: int,
+     *     dexterity: int,
+     *     expression: int,
+     *     knowledge: int,
+     *     perception: int,
+     *     power: int,
+     *     strength: int
+     *  } $characteristics
      * @param array<array{name: string, level: int, special?: string, pro?: bool}>  $skills
      */
     public function __construct(
@@ -17,7 +27,7 @@ class CharacterCreated implements Event
         private string $nickname,
         private int $age,
         private bool $gender,
-        private array $attributes,
+        private array $characteristics,
         private array $skills,
     ) {
     }
@@ -30,7 +40,7 @@ class CharacterCreated implements Event
             $data['nickname'],
             $data['age'],
             $data['gender'],
-            $data['attributes'],
+            $data['characteristics'],
             $data['skills'],
         );
     }
@@ -42,7 +52,17 @@ class CharacterCreated implements Event
      *  nickname: string,
      *  age: int,
      *  gender: bool,
-     *  attributes: array<string, int>,
+     *  characteristics: array{
+     *     adaptability: int,
+     *     charisma: int,
+     *     constitution: int,
+     *     dexterity: int,
+     *     expression: int,
+     *     knowledge: int,
+     *     perception: int,
+     *     power: int,
+     *     strength: int
+     *  },
      *  skills: array<array{name: string, level: int, special?: string, pro?: bool}>,
      * }
      */
@@ -54,7 +74,7 @@ class CharacterCreated implements Event
             'nickname' => $this->nickname,
             'age' => $this->age,
             'gender' => $this->gender,
-            'attributes' => $this->attributes,
+            'characteristics' => $this->characteristics,
             'skills' => $this->skills,
         ];
     }
@@ -85,11 +105,21 @@ class CharacterCreated implements Event
     }
 
     /**
-     * @return array<string, int>
+     * @return array{
+     *  adaptability: int,
+     *  charisma: int,
+     *  constitution: int,
+     *  dexterity: int,
+     *  expression: int,
+     *  knowledge: int,
+     *  perception: int,
+     *  power: int,
+     *  strength: int
+     * }
      */
-    public function getAttributes(): array
+    public function getCharacteristics(): array
     {
-        return $this->attributes;
+        return $this->characteristics;
     }
 
     /**

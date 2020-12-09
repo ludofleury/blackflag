@@ -12,7 +12,6 @@ use EventSourcing\Message;
 use EventSourcing\Stream;
 use EventSourcing\Testing\EsTestCase;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 class AggregateRootTest extends EsTestCase
 {
@@ -23,7 +22,7 @@ class AggregateRootTest extends EsTestCase
 
         $this->assertEquals(
             $id,
-            $ar->getId()
+            $ar->getAggregateRootId()
         );
     }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BlackFlag\PlayableCharacter;
 
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
-use BlackFlag\Resolution\SkillName;
+use BlackFlag\PlayableCharacter\Event\CharacterImprovedAttribute;
 use BlackFlag\Skill;
 use EventSourcing\AggregateRoot;
 use Ramsey\Uuid\Uuid;
@@ -21,14 +21,22 @@ final class Character extends AggregateRoot
 
     private bool $gender;
 
-    private PrimaryAttributes $primaries;
+    private Attributes $attributes;
 
     private Skills $skills;
 
-//    private SecondaryAttributes $secondaries;
-
     /**
-     * @param array<string, int> $attributes
+     * @param array{
+     *     adaptability: int,
+     *     charisma: int,
+     *     constitution: int,
+     *     dexterity: int,
+     *     expression: int,
+     *     knowledge: int,
+     *     perception: int,
+     *     power: int,
+     *     strength: int
+     *  } $attributes
      * @param array<array{name: string, level: int, special?: string, pro?: bool}>  $skills
      */
     public static function create(
@@ -68,7 +76,7 @@ final class Character extends AggregateRoot
         $this->nickname = $event->getNickname();
         $this->age = $event->getAge();
         $this->gender = $event->getGender();
-        $this->primaries = new PrimaryAttributes($this);
+        $this->attributes = new Attributes($this);
         $this->skills = new Skills($this);
     }
 }
