@@ -3,21 +3,22 @@ declare(strict_types=1);
 
 namespace BlackFlag\Skill;
 
+use BlackFlag\Skill\Domain\Validator;
+
 use DomainException;
 use LogicException;
 
-class Domain  implements Knowledge, Technical, Maritime, Physical, Social, Combat
+class Domain
 {
+    use Validator;
+
     private string $name;
     private ?string $specialization;
 
     public function __construct(string $name, ?string $specialization = null)
     {
-        if (!Registry::hasDomain($name)) {
-            !Registry::has($name)
-                ? throw new DomainException(sprintf('Unknown skill domain "%s"', $name))
-                : throw new LogicException(sprintf('"%s" is a specialization, instantiate with BlackFlag\\Skill("[main skill]", "%s", ...) instead', $name, $name))
-            ;
+        if (!$this->supports($name)) {
+            throw new DomainException(sprintf('Unknown skill domain "%s"', $name));
         }
 
         $this->name = $name;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\BlackFlag\Skill;
 
 use BlackFlag\Skill\Domain;
-use BlackFlag\Skill\Knowledge;
+use BlackFlag\Skill\Domain\Knowledge;
 use DomainException;
 use LogicException;
 use PHPUnit\Framework\TestCase;

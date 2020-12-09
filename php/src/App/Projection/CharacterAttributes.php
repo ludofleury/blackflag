@@ -11,47 +11,47 @@ use Doctrine\ORM\Mapping as ORM;
 class CharacterAttributes
 {
     /**
-     * @ORM\Column(type="smallint", name="ADA", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="adaptability", options={"unsigned":true, "default": 0})
      */
     public int $adaptability;
 
     /**
-     * @ORM\Column(type="smallint", name="CHA", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="charisma", options={"unsigned":true, "default": 0})
      */
     public int $charisma;
 
     /**
-     * @ORM\Column(type="smallint", name="CON", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="constitution", options={"unsigned":true, "default": 0})
      */
     public int $constitution;
 
     /**
-     * @ORM\Column(type="smallint", name="DEX", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="dexterity", options={"unsigned":true, "default": 0})
      */
     public int $dexterity;
 
     /**
-     * @ORM\Column(type="smallint", name="EXP", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="expression", options={"unsigned":true, "default": 0})
      */
     public int $expression;
 
     /**
-     * @ORM\Column(type="smallint", name="KNO",options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="knowledge",options={"unsigned":true, "default": 0})
      */
     public int $knowledge;
 
     /**
-     * @ORM\Column(type="smallint", name="PER", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="perception", options={"unsigned":true, "default": 0})
      */
     public int $perception;
 
     /**
-     * @ORM\Column(type="smallint", name="POW", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="power", options={"unsigned":true, "default": 0})
      */
     public int $power;
 
     /**
-     * @ORM\Column(type="smallint", name="STR", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="strength", options={"unsigned":true, "default": 0})
      */
     public int $strength;
 

@@ -5,7 +5,7 @@ namespace EventSourcing;
 
 abstract class MessageHandler
 {
-    final public function __invoke(Message $message)
+    final public function __invoke(Message $message): void
     {
         $method = $this->getApplyMethod($message->getEvent());
         if (!method_exists($this, $method)) {

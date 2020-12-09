@@ -3,7 +3,6 @@ declare(strict_Types=1);
 
 namespace BlackFlag;
 
-use BlackFlag\Skill\Exception\SkillException;
 use BlackFlag\Skill\Factory;
 use BlackFlag\Skill\Level;
 use BlackFlag\Skill\Domain;

@@ -1,25 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace BlackFlag\Skill;
+namespace BlackFlag\Attribute;
 
-use BlackFlag\Skill\Exception\SkillException;
+use BlackFlag\Attribute\Exception\InvalidLevel;
+use Rpg\Reference as RPG;
 
+#[RPG\Book(ISBN: '978-2-36328-252-1', page: 14)]
+#[RPG\Term(lang: 'fr', text: 'niveau de caractéristique')]
+#[RPG\Term(lang: 'fr', text: 'valeur de métier')]
+#[RPG\Term(lang: 'fr', text: 'valeur de commandement')]
 final class Level
 {
-    public const MINIMUM = 0;
-    public const MAXIMUM = 7;
+    public const MINIMUM = 2;
+    public const MAXIMUM = 8;
 
     private int $value;
 
     public function __construct(int $value)
     {
         if ($value < self::MINIMUM) {
-            throw new SkillException(sprintf('Level %d is too low, minimum %d', $value, self::MINIMUM));
+            throw new InvalidLevel(sprintf('Level %d is too low, minimum %d', $value, self::MINIMUM));
         }
 
         if ($value > self::MAXIMUM) {
-            throw new SkillException(sprintf('Level %d is too high, maximum %d', $value, self::MAXIMUM));
+            throw new InvalidLevel(sprintf('Level %d is too high, maximum %d', $value, self::MAXIMUM));
         }
 
         $this->value = $value;

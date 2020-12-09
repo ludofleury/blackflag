@@ -40,12 +40,12 @@ class CharacterSheet
     public int $age;
 
     /**
-     * @ORM\Column(type="smallint", name="xp", options={"unsigned":true, "default": 0})
+     * @ORM\Column(type="smallint", name="experience", options={"unsigned":true, "default": 0})
      */
     public int $experience;
 
     /**
-     * @ORM\Embedded(columnPrefix="PA_", class="CharacterAttributes")
+     * @ORM\Embedded(columnPrefix="attribute", class="CharacterAttributes")
      */
     public CharacterAttributes $attributes;
 

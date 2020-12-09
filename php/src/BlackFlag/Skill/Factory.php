@@ -81,11 +81,11 @@ trait Factory
      */
     public static function __callStatic(string $id, array $arguments): Skill
     {
-        if (!defined(sprintf('%s::%s', Registry::class, $id))) {
-            throw new SkillException(sprintf('Unknown skill constant "%s::%s"', Registry::class, $id));
+        if (!defined(sprintf('%s::%s', Domain::class, $id))) {
+            throw new SkillException(sprintf('Unknown skill domain "%s::%s"', Domain::class, $id));
         }
 
-        $name = constant(sprintf('%s::%s', Registry::class, $id));
+        $name = constant(sprintf('%s::%s', Domain::class, $id));
         $rule = Registry::getDefaultRule($name);
         $name = $rule->getName();
         $specialization = null;

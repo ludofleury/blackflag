@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-use BlackFlag\Skill\Combat;
-use BlackFlag\Skill\Knowledge;
-use BlackFlag\Skill\Maritime;
-use BlackFlag\Skill\Physical;
-use BlackFlag\Skill\Social;
-use BlackFlag\Skill\Technical;
-use BlackFlag\Skill\Registry;
+use BlackFlag\SKill\Domain\Combat;
+use BlackFlag\SKill\Domain\Knowledge;
+use BlackFlag\SKill\Domain\Maritime;
+use BlackFlag\SKill\Domain\Physical;
+use BlackFlag\SKill\Domain\Social;
+use BlackFlag\SKill\Domain\Technical;
+use BlackFlag\SKill\Registry;
 
 return [
         Knowledge::BALLISTICS  => Registry::SIMPLE | Registry::PRO,

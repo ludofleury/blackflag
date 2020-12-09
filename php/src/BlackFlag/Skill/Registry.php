@@ -12,7 +12,7 @@ use RuntimeException;
  * Official skill domain rule index
  */
 #[RPG\Book(ISBN: '978-2-36328-252-1', page: 14)]
-final class Registry implements Knowledge, Technical, Maritime, Physical, Social, Combat
+final class Registry
 {
     public const SIMPLE = 0b0001;
     public const MACRO = 0b0010;

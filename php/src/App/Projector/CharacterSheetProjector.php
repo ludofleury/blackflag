@@ -42,6 +42,10 @@ class CharacterSheetProjector extends MessageHandler implements Projector
         $repository = $this->persister->getRepository(CharacterSheet::class);
         $sheet = $repository->find($message->getAggregateRootId());
 
+        if ($sheet === null) {
+            throw new \RuntimeException('Unable to retrieve character sheet');
+        }
+
         $attribute = $event->getName();
 
         $sheet->attributes->$attribute += $event->getProgress();

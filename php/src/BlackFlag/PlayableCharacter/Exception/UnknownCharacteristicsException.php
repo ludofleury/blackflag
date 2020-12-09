@@ -5,7 +5,7 @@ namespace BlackFlag\PlayableCharacter\Exception;
 
 use DomainException;
 
-class UnknownAttributesException extends DomainException
+class UnknownCharacteristicsException extends DomainException
 {
     public function __construct(string $name)
     {

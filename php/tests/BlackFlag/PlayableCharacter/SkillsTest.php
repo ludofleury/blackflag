@@ -3,20 +3,12 @@ declare(strict_types=1);
 
 namespace Tests\BlackFlag\PlayableCharacter;
 
-use BlackFlag\Attribute\Primary\Adaptability;
-use BlackFlag\Attribute\Primary\Charisma;
-use BlackFlag\Attribute\Primary\Constitution;
-use BlackFlag\Attribute\Primary\Dexterity;
-use BlackFlag\Attribute\Primary\Expression;
-use BlackFlag\Attribute\Primary\Knowledge;
-use BlackFlag\Attribute\Primary\Perception;
-use BlackFlag\Attribute\Primary\Power;
-use BlackFlag\Attribute\Primary\Strength;
+use BlackFlag\Attribute\Characteristic;
 use BlackFlag\PlayableCharacter\Character;
 use BlackFlag\PlayableCharacter\Exception\SkillNotLearned;
 use BlackFlag\Skill;
-use BlackFlag\Skill\Combat;
-use BlackFlag\Skill\Technical;
+use BlackFlag\Skill\Domain\Combat;
+use BlackFlag\Skill\Domain\Technical;
 use PHPUnit\Framework\TestCase;
 
 class SkillsTest extends TestCase
@@ -33,15 +25,15 @@ class SkillsTest extends TestCase
                     35,
                     true,
                     [
-                        Adaptability::name => 5,
-                        Charisma::name     => 5,
-                        Constitution::name => 5,
-                        Dexterity::name    => 5,
-                        Expression::name   => 5,
-                        Knowledge::name    => 5,
-                        Perception::name   => 5,
-                        Power::name        => 5,
-                        Strength::name     => 6,
+                        Characteristic::ADAPTABILITY => 5,
+                        Characteristic::CHARISMA     => 5,
+                        Characteristic::CONSTITUTION => 5,
+                        Characteristic::DEXTERITY    => 5,
+                        Characteristic::EXPRESSION   => 5,
+                        Characteristic::KNOWLEDGE    => 5,
+                        Characteristic::PERCEPTION   => 5,
+                        Characteristic::POWER        => 5,
+                        Characteristic::STRENGTH     => 6,
                     ],
                     [
                         ['name' => Combat::DODGING, 'level' => 1],

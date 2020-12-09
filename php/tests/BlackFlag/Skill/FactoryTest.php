@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Tests\BlackFlag\Skill;
 
 use BlackFlag\Skill;
+use BlackFlag\Skill\Domain\Knowledge;
+use BlackFlag\Skill\Exception\SkillException;
 use BlackFlag\Skill\Factory;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +29,7 @@ class FactoryTest extends TestCase
         /** @var Factory|object $behavior */
         $behavior = $this->getObjectForTrait(Factory::class);
 
-        $skill = $behavior::EXPERTISE(Skill\Knowledge::EXPERTISE_LAW, 1); // @phpstan-ignore-line
+        $skill = $behavior::EXPERTISE(Knowledge::EXPERTISE_LAW, 1); // @phpstan-ignore-line
         $this->assertInstanceOf(Skill::class, $skill);
         $this->assertEquals('specialized knowledge', $skill->getName());
         $this->assertEquals('law', $skill->getSpecialization());
@@ -48,7 +50,7 @@ class FactoryTest extends TestCase
 
     public function testCannotInstantiateUnknownSkill(): void
     {
-        $this->expectException(Skill\Exception\SkillException::class);
+        $this->expectException(SkillException::class);
         $this->expectExceptionMessage('Unknown skill constant "BlackFlag\\Skill\\Registry::RANDOM"');
 
         /** @var Factory|object $behavior */

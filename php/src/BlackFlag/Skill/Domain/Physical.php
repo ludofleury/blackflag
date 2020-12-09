@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BlackFlag\Skill;
+namespace BlackFlag\Skill\Domain;
 
 interface Physical
 {
