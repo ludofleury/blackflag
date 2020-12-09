@@ -3,7 +3,6 @@ declare(strict_Types=1);
 
 namespace BlackFlag;
 
-use BlackFlag\Skill\Factory;
 use BlackFlag\Skill\Level;
 use BlackFlag\Skill\Domain;
 use Rpg\Reference as RPG;
@@ -19,8 +18,6 @@ use Rpg\Reference as RPG;
 #[RPG\Term(lang: 'fr', text: 'compétence')]
 final class Skill
 {
-    use Factory;
-
     private Domain $domain;
     private Level $level;
     private bool $isProfessional;

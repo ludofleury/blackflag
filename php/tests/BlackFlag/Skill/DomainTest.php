@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class DomainTest extends TestCase
 {
-    public function testRejectsUnknownSkill(): void
+    public function testRejectsUnknownDomain(): void
     {
         $this->expectException(DomainException::class);
         $this->expectExceptionMessage('Unknown skill domain "random"');
@@ -28,10 +28,16 @@ class DomainTest extends TestCase
         $this->assertTrue($domain->isSpecialized());
     }
 
-    public function testRejectsDirectSpecialization(): void
+    public function testSupportsCustomSpecialization(): void
+    {
+        $domain = new Domain(Knowledge::EXPERTISE, 'custom specialization');
+        $this->assertTrue($domain->isSpecialized());
+    }
+
+    public function testRejectsSpecializationAsDomain(): void
     {
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('"law" is a specialization, instantiate with BlackFlag\\Skill("[main skill]", "law", ...) instead');
+        $this->expectExceptionMessage('Unknown skill domain "law"');
 
         new Domain(Knowledge::EXPERTISE_LAW);
     }
