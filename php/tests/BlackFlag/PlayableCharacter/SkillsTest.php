@@ -36,9 +36,9 @@ class SkillsTest extends TestCase
                         Characteristic::STRENGTH     => 6,
                     ],
                     [
-                        ['name' => Combat::DODGING, 'level' => 1],
-                        ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
-                        ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
+                        ['domain' => Combat::DODGING, 'level' => 1],
+                        ['domain' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                        ['domain' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
                     ],
                 )
             ]

@@ -8,6 +8,7 @@ use EventSourcing\Event;
 class CharacterCreated implements Event
 {
     /**
+     * @param array<string> $occupations
      * @param array{
      *     adaptability: int,
      *     charisma: int,
@@ -27,6 +28,7 @@ class CharacterCreated implements Event
         private string $nickname,
         private int $age,
         private bool $gender,
+        private array $occupations,
         private array $characteristics,
         private array $skills,
     ) {
@@ -40,6 +42,7 @@ class CharacterCreated implements Event
             $data['nickname'],
             $data['age'],
             $data['gender'],
+            $data['occupations'],
             $data['characteristics'],
             $data['skills'],
         );
@@ -52,6 +55,7 @@ class CharacterCreated implements Event
      *  nickname: string,
      *  age: int,
      *  gender: bool,
+     *  occupation: string,
      *  characteristics: array{
      *     adaptability: int,
      *     charisma: int,
@@ -63,7 +67,7 @@ class CharacterCreated implements Event
      *     power: int,
      *     strength: int
      *  },
-     *  skills: array<array{name: string, level: int, special?: string, pro?: bool}>,
+     *  skills: array<array{domain: string, level: int, special?: string, pro?: bool}>,
      * }
      */
     public function toArray(): array
@@ -74,6 +78,7 @@ class CharacterCreated implements Event
             'nickname' => $this->nickname,
             'age' => $this->age,
             'gender' => $this->gender,
+            'occupations' => $this->occupations,
             'characteristics' => $this->characteristics,
             'skills' => $this->skills,
         ];
@@ -123,7 +128,7 @@ class CharacterCreated implements Event
     }
 
     /**
-     * @return array<array{name: string, level: int, special?: string, pro?: bool}>
+     * @return array<array{domain: string, level: int, special?: string, pro?: bool}>
      */
     public function getSkills(): array
     {

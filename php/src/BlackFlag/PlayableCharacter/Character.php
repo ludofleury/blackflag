@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace BlackFlag\PlayableCharacter;
 
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
-use BlackFlag\PlayableCharacter\Event\CharacterImprovedAttribute;
 use BlackFlag\Skill;
 use EventSourcing\AggregateRoot;
 use Ramsey\Uuid\Uuid;
@@ -45,6 +44,7 @@ final class Character extends AggregateRoot
         string $nickname,
         int $age,
         bool $gender,
+        array $occupations,
         array $attributes,
         array $skills,
     ): Character {

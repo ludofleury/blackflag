@@ -6,7 +6,6 @@ namespace BlackFlag\PlayableCharacter;
 use BlackFlag\Attribute;
 use BlackFlag\Attribute\Characteristic;
 use BlackFlag\PlayableCharacter\Event\CharacterCreated;
-use BlackFlag\PlayableCharacter\Event\CharacterImprovedAttribute;
 use BlackFlag\PlayableCharacter\Exception\CharacteristicsMissingException;
 use BlackFlag\PlayableCharacter\Exception\CharacteristicsTooLowException;
 use BlackFlag\PlayableCharacter\Exception\UnknownCharacteristicsException;

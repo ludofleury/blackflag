@@ -33,10 +33,10 @@ class Skills extends ChildEntity
         $skills = $event->getSkills();
 
         foreach ($skills as $data) {
-            $index = isset($data['special']) ? $data['special'] : $data['name'];
+            $index = isset($data['special']) ? $data['special'] : $data['domain'];
 
             $this->skills[$index] = new Skill(
-                new Domain($data['name'], isset($data['special']) ? $data['special'] : null),
+                new Domain($data['domain'], isset($data['special']) ? $data['special'] : null),
                 $data['level'],
                 isset($data['pro']) ? $data['pro'] : false,
             );

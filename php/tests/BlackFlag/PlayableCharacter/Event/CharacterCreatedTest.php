@@ -33,9 +33,9 @@ class CharacterCreatedTest extends TestCase
                     Characteristic::STRENGTH     => 6,
                 ],
                 [
-                    ['name' => Combat::DODGING, 'level' => 1],
-                    ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
-                    ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
+                    ['domain' => Combat::DODGING, 'level' => 1],
+                    ['domain' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                    ['domain' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
                 ],
             )]
         ];
@@ -95,9 +95,9 @@ class CharacterCreatedTest extends TestCase
     {
         $this->assertEquals(
             [
-                ['name' => Combat::DODGING, 'level' => 1],
-                ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
-                ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
+                ['domain' => Combat::DODGING, 'level' => 1],
+                ['domain' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                ['domain' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
             ],
             $event->getSkills()
         );
@@ -125,9 +125,9 @@ class CharacterCreatedTest extends TestCase
                     Characteristic::STRENGTH     => 6,
                 ],
                 'skills' => [
-                    ['name' => Combat::DODGING, 'level' => 1],
-                    ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
-                    ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
+                    ['domain' => Combat::DODGING, 'level' => 1],
+                    ['domain' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                    ['domain' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
                 ]
             ],
             $event->toArray(),
@@ -155,9 +155,9 @@ class CharacterCreatedTest extends TestCase
                 Characteristic::STRENGTH     => 6,
             ],
             'skills' => [
-                ['name' => Combat::DODGING, 'level' => 1],
-                ['name' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
-                ['name' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
+                ['domain' => Combat::DODGING, 'level' => 1],
+                ['domain' => Combat::MELEE, 'special' => Combat::MELEE_AXE, 'level' => 2],
+                ['domain' => Technical::ART, 'special' => 'singing', 'level' => 3, 'pro' => true],
             ]
         ]);
 

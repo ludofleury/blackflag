@@ -28,10 +28,10 @@ class TestController
         CharacterRepository $characterRepository,
     ): Response
     {
-        // $this->createCharacter($characterRepository);
-        // $this->improveAttribute($characterRepository);
-        // $this->createSession($sessionRepository, $commandBus);
+        $this->createCharacter($characterRepository);
+
         $logger->info('test debug controller called');
+
         return new Response('<html lang="en"><body>test debug</body></html>');
     }
 
@@ -43,6 +43,7 @@ class TestController
             'Black beard',
             35,
             true,
+            ['test'],
             [
                 Characteristic::ADAPTABILITY => 5,
                 Characteristic::CHARISMA     => 5,
